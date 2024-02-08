@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
-import { InicioComponent} from '../app/component/inicio/inicio.component'
+import { InicioComponent} from '../app/components/inicio/inicio.component'
+import { GruposComponent } from "../app/components/grupos/grupos.component";
+import { PerfilComponent } from "../app/components/perfil/perfil.component";
 
+const tituloPagina = "ShareHub"
 export const routes: Routes = [
-    {path:'',title:"Inicio",component:InicioComponent}
+    {path:'',title: `Inicio | ${tituloPagina}`,component:InicioComponent},
+    {path:'grupos',title: `Grupos | ${tituloPagina}`,component:GruposComponent},
+    {path:'perfil',title: `Perfil | ${tituloPagina}`,component:PerfilComponent}
 ];
