@@ -1,5 +1,16 @@
+@if (sesionUsuario) {
 <app-navbar></app-navbar>
-<app-menu-izquierda></app-menu-izquierda>
-<app-menu-derecha></app-menu-derecha>
-
+<div class="row">
+    <div class="col-3">
+        <app-menu-izquierda></app-menu-izquierda>
+    </div>
+    <div class="col-6">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-3">
+        <app-menu-derecha></app-menu-derecha>
+    </div>
+</div>
+}@else {
 <router-outlet></router-outlet>
+}
