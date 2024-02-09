@@ -8,12 +8,134 @@
     </div>
     <div class="d-flex justify-content-center mb-4">
         <div class="text-center TextoShareHubFont">
-            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-4">Publicar</button>
-            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-2"><i
+            <!-- Button trigger modal Publicar en el Grupo -->
+            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-4" data-bs-toggle="modal"
+            data-bs-target="#modalPublicacionDeGrupo">Publicar</button>
+            <!-- Modal Publicar en el Grupo -->
+            <div class="modal fade" id="modalPublicacionDeGrupo" tabindex="-1" aria-labelledby="ModalLabelPublicacionDeGrupo"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-bg">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-white TextoShareHubFont fw-bold"
+                                id="ModalLabelPublicacionDeGrupo">
+                                Publicar</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column">
+                            <div class="d-flex flex-column">
+                                <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">¿Que quieres decir en esta publicacion?</label>
+                                <textarea name="" id="inputDescGrupo" cols="30" rows="5"
+                                    class="inputEditar rounded px-3"></textarea>
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Subir imagen</label>
+                                <input type="text" id="inputNombreGrupo" class="rounded-pill inputEditar border-0 px-3">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-guardar fw-semibold">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal Agregar Miembros -->
+            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-2" data-bs-toggle="modal"
+            data-bs-target="#modalAgregarMiembros"><i
                     class="fa-solid fa-user-plus"></i></button>
-            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-4"><i
-                    class="fa-solid fa-user-minus"></i></button>
-            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn">Editar Grupo</button>
+            <!-- Modal Editar Agregar Miembros -->
+            <div class="modal fade" id="modalAgregarMiembros" tabindex="-1"
+                aria-labelledby="agregarMiembrosModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-bg">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-white TextoShareHubFont fw-bold"
+                                id="agregarMiembrosModalLabel">
+                                Agregar Miembros</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-guardar fw-semibold">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal Eliminar Miembros -->
+            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-4" data-bs-toggle="modal"
+                data-bs-target="#modalEliminarMiembros"><i class="fa-solid fa-user-minus"></i></button>
+            <!-- Modal Editar Eliminar Miembros -->
+            <div class="modal fade" id="modalEliminarMiembros" tabindex="-1"
+                aria-labelledby="eliminarMiembrosModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-bg">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-white TextoShareHubFont fw-bold"
+                                id="eliminarMiembrosModalLabel">
+                                Eliminar Miembros</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-guardar fw-semibold">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal Editar Grupo -->
+            <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn" data-bs-toggle="modal"
+                data-bs-target="#modalEditarGrupo">Editar Grupo</button>
+            <!-- Modal Editar Grupo -->
+            <div class="modal fade" id="modalEditarGrupo" tabindex="-1" aria-labelledby="ModalLabelEditarGrupo"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-bg">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-white TextoShareHubFont fw-bold"
+                                id="ModalLabelEditarGrupo">
+                                Editar Grupo</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column">
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="inputImgGrupo" class="text-color TextoShareHubFont mb-2">Imagen del
+                                    grupo</label>
+                                <input type="text" id="inputImgGrupo" class="rounded-pill inputEditar border-0 px-3">
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Nombre del
+                                    grupo</label>
+                                <input type="text" id="inputNombreGrupo" class="rounded-pill inputEditar border-0 px-3">
+                            </div>
+                            <div class="d-flex flex-column">
+                                <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">Descripcion del
+                                    grupo</label>
+                                <textarea name="" id="inputDescGrupo" cols="30" rows="5"
+                                    class="inputEditar rounded px-3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-guardar fw-semibold">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-center flex-column text-center">
@@ -21,9 +143,9 @@
             <div class="linea"></div>
         </div>
         <div class="d-flex justify-content-around mb-2 TextoShareHubFont">
-            <div class="text-color">Publicaciones</div>
-            <div class="text-color">Fotos</div>
-            <div class="text-color">Miembros</div>
+            <button class="btn text-color">Publicaciones</button>
+            <button class="btn text-color">Fotos</button>
+            <button class="btn text-color">Miembros</button>
         </div>
     </div>
     <div>

@@ -20,3 +20,19 @@
     width: 30%;
     background-color: var(--morado-claro);
 }
+
+.modal-bg{
+    background-color: var(--morado-oscuro-principal);
+}
+
+.inputEditar{
+    background-color: #ffff;
+}
+
+.btn-guardar{
+    background-color: var(--amarillo-principal);
+}
+
+.btn-cancelar{
+    background-color: var(--morado-claro);
+}
