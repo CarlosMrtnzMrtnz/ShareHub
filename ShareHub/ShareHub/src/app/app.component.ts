@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './component/navbar/navbar.component';
-import { MenuIzquierdaComponent } from './component/menu-izquierda/menu-izquierda.component';
-import { MenuDerechaComponent } from './component/menu-derecha/menu-derecha.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MenuIzquierdaComponent } from './components/menu-izquierda/menu-izquierda.component';
+import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.component';
 
 
 @Component({
