@@ -20,6 +20,8 @@ body {
 }
 .cuadro {
     background-color: var(--morado-oscuro-secundario);
+    box-shadow:  30px 30px 56px #0b001f,
+    -30px -30px 56px #150037;
 
 }
 .linea2 {

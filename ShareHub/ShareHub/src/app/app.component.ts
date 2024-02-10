@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuIzquierdaComponent } from './components/menu-izquierda/menu-izquierda.component';
 import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @Component({
@@ -14,7 +16,9 @@ import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.com
     CommonModule,
     NavbarComponent,
     MenuIzquierdaComponent,
+    InicioComponent,
     MenuDerechaComponent,
+    LoginComponent
 
 
 ],
