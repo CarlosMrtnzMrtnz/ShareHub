@@ -6,7 +6,6 @@
         <app-menu-izquierda></app-menu-izquierda>
     </div>
     <div class="col-6">
-        <!-- <app-inicio></app-inicio> -->
         <router-outlet></router-outlet>
     </div>
     <div class="col-3">
@@ -14,5 +13,6 @@
     </div>
 </div>
 }@else {
-    <app-login></app-login>
+    <router-outlet></router-outlet>
+
 }
