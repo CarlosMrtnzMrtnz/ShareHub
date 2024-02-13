@@ -1,3 +1,8 @@
-p, div, h1, h2, h3, h4, h5, h6, section, span, main{
-    color: #fff !important;
+.linksMI{
+    color: var(--morado-claro);
+}
+
+.contenedorIzq{
+    width: 200px;
+    border-right: 1px solid var(--morado-claro);
 }

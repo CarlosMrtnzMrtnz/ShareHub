@@ -21,9 +21,9 @@ import { LoginComponent } from './components/login/login.component';
     LoginComponent
 
 
-],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'ShareHub';

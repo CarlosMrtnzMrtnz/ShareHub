@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { InicioComponent} from '../app/components/inicio/inicio.component'
 import { GruposComponent } from "../app/components/grupos/grupos.component";
-import { PerfilComponent } from "../app/components/perfil/perfil.component";
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
+import { PerfilComponent } from './components/perfil/perfil.component'
 
 const tituloPagina = "ShareHub"
 export const routes: Routes = [
