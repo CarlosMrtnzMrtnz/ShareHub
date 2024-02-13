@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InicioComponent} from '../app/components/inicio/inicio.component'
+import { InicioComponent } from '../app/components/inicio/inicio.component'
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuIzquierdaComponent } from './components/menu-izquierda/menu-izquierda.component';
@@ -18,7 +18,7 @@ import { LoginComponent } from './components/login/login.component';
     MenuIzquierdaComponent,
     InicioComponent,
     MenuDerechaComponent,
-    LoginComponent
+    LoginComponent,
 
 
     ],
