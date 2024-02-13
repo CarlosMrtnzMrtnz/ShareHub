@@ -7,10 +7,10 @@ import { PerfilComponent } from './components/perfil/perfil.component'
 
 const tituloPagina = "ShareHub"
 export const routes: Routes = [
-    {path:'',title: `Inicio | ${tituloPagina}`,component:InicioComponent},
+    {path:'inicio',title: `Inicio | ${tituloPagina}`,component:InicioComponent},
     {path:'grupos',title: `Grupos | ${tituloPagina}`,component:GruposComponent},
     {path:'perfil',title: `Perfil | ${tituloPagina}`,component:PerfilComponent},
-    {path:'',title:"Inicio de sesion",component:LoginComponent},
+    {path:'',title:"login",component:LoginComponent},
     {path:'inicio',title:"Inicio de sesion",component:InicioComponent},
     {path: 'registro', component: RegistroComponent }
 ];
