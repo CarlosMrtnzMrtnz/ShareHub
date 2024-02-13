@@ -6,7 +6,9 @@
     --amarillo-principal: #F7EF48;
     --morado-claro: #C77DFF;
 }
-
+body {
+    background-color: var(--morado-oscuro-principal);
+}
 @font-face{
     font-family: 'LogoShareHubFont';
     src: url('../src/assets/fonts/ProtestStrike-Regular.ttf');

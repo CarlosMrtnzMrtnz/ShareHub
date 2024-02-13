@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuIzquierdaComponent } from './components/menu-izquierda/menu-izquierda.component';
 import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @Component({
@@ -15,7 +16,9 @@ import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.com
     CommonModule,
     NavbarComponent,
     MenuIzquierdaComponent,
-    MenuDerechaComponent
+    InicioComponent,
+    MenuDerechaComponent,
+    LoginComponent
 
 
 ],
@@ -24,4 +27,15 @@ import { MenuDerechaComponent } from './components/menu-derecha/menu-derecha.com
 })
 export class AppComponent {
   title = 'ShareHub';
+  sesionUsuario: boolean = false
+
+  ngOnInit(){
+    if(sessionStorage.getItem("login") == '1'){
+        this.sesionUsuario = true
+    }else{
+        this.sesionUsuario = false
+    }
+    console.log(this.sesionUsuario);
+  }
+
 }
