@@ -1,0 +1,8 @@
+.linksMI{
+    color: var(--morado-claro);
+}
+
+.contenedorIzq{
+    width: 200px;
+    border-right: 1px solid var(--morado-claro);
+}
