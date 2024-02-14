@@ -1,0 +1,38 @@
+
+
+.login {
+    background-color: var(--morado-oscuro-principal) !important ;
+    color :white;
+    height: 100vh;
+}
+body {
+    background-color: var(--morado-oscuro-principal) !important ;
+
+}
+.nombre {
+    font-size: 70px;
+}
+
+.linea {
+    border-right: 2px solid #c97bf6;
+}
+.boton {
+    background-color: var(--amarillo-principal);
+
+}
+.cuadro {
+    background-color:var(--morado-oscuro-secundario);
+
+
+}
+.linea2 {
+    border-bottom: 2px solid #c97bf6;
+}
+.ingresa {
+    color: var(--morado-claro);
+}
+.esta{
+    width: 45px;
+    border-radius: 100%;
+}
+

@@ -1,0 +1,38 @@
+.img-grupo{
+    width: 200px;
+    height: 200px;
+}
+
+.grupos-page-bg{
+    background-color: var(--morado-oscuro-principal);
+}
+
+.text-color{
+    color: var(--morado-claro);
+}
+
+.color-btn{
+    background-color: var(--amarillo-principal);
+}
+
+.linea{
+    height: 1px;
+    width: 30%;
+    background-color: var(--morado-claro);
+}
+
+.modal-bg{
+    background-color: var(--morado-oscuro-principal);
+}
+
+.inputEditar{
+    background-color: #ffff;
+}
+
+.btn-guardar{
+    background-color: var(--amarillo-principal);
+}
+
+.btn-cancelar{
+    background-color: var(--morado-claro);
+}

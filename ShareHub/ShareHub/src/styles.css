@@ -1,10 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
 :root{
     --morado-oscuro-principal: #10002B;
     --morado-oscuro-secundario: #240046;
     --amarillo-principal: #F7EF48;
     --morado-claro: #C77DFF;
 }
-
+body {
+    background-color: var(--morado-oscuro-principal);
+}
 @font-face{
     font-family: 'LogoShareHubFont';
     src: url('../src/assets/fonts/ProtestStrike-Regular.ttf');
@@ -21,8 +24,4 @@
 
 .TextoShareHubFont{
     font-family: 'TextoShareHubFont';
-}
-
-body{
-    background-color: var(--morado-oscuro-principal);
 }
