@@ -35,7 +35,7 @@ export class AppComponent {
     }else{
         this.sesionUsuario = false
     }
-    console.log(this.sesionUsuario);
+    // console.log(this.sesionUsuario);
   }
 
 }

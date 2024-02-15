@@ -1,0 +1,26 @@
+body {
+    background-color: var(--morado-oscuro-principal);
+}
+.usuario {
+    border-radius: 100%;
+    width: 45px;
+    height: 45px;
+}
+.usuario2 {
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+}
+.caja {
+    border: 1px solid var(--morado-claro);
+}
+.imgPublicacion {
+    width: 90%;
+    height: 50%;
+}
+.comentar {
+    background-color: var(--morado-oscuro-principal);
+}
+.comentario {
+    border-top: 1px solid var(--morado-claro);
+}

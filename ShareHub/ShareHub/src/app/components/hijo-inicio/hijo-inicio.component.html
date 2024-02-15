@@ -1,0 +1,52 @@
+<div class="caja my-3 p-3">
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex m-2">
+            <div class="me-3"><img class="usuario"  src="{{rutaImagenUsuario}}" alt=""></div>
+            <div class="TextoShareHubFont d-grid align-items-center text-white ms-3"><h4 class="m-0 TextoShareHubFont fw-bold">{{rutaNombre}}</h4></div>
+        </div>
+        <div class="d-grid align-content-center">
+            <button class="btn text-white fs-3" >X</button>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img class="imgPublicacion mt-3" src="{{rutaImagen}}" alt="">
+    </div>
+    <div class="text-white p-2 mt-3">
+        <p>{{rutaComentario}}</p>
+    </div>
+
+    <div class="d-flex justify-content-around text-white">
+        <div>
+            <button class="btn">
+                <i class="fa-regular fa-heart fa-2x text-white"></i>
+            </button></div>
+        <div>
+            <button class="btn " (click)="toggleInput()">
+                <i class="fa-solid fa-comments fa-2x text-white"></i>
+            </button>
+        </div>
+        <div>
+            <button class="btn ">
+                <i class="fa-regular fa-bookmark fa-2x text-white"></i>
+            </button>
+        </div>
+    </div>
+    <div class="comentario mt-3" *ngIf="mostrarInput">
+        <div class="d-flex mt-3 m-2">
+            <div class="ms-4 me-2"><img class="usuario2"  src="{{rutaImagenUsuario}}" alt=""></div>
+            <div class="TextoShareHubFont d-grid align-items-center text-white ms-1">
+                <h6 class="m-0 mb-1 fw-bold TextoShareHubFont">{{rutaNombre}}</h6>
+                <h6 class="TextoShareHubFont ms-3 text-white" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit porro natus voluptates, magnam aspernatur quasi optio voluptatem iusto, impedit libero maxime pariatur ipsam quibusdam expedita explicabo asperiores eligendi sapiente esse?   </h6>
+
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <input type="text" class="form-control rounded-2 mt-3" placeholder="Ingra tu comentario" />
+            <button class=" btn " (click)="toggleInput()">
+                <i class="fa-solid fa-check fa-2x d-grid align-content-center mt-3 ms-2 text-white"></i>
+            </button>
+        </div>
+    </div>
+</div>

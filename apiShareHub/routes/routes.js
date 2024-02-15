@@ -4,6 +4,7 @@ const upload = multer({ dest: 'uploads/' })
 const router = express.Router();
 const gruposController = require('../controllers/gruposController')
 const usuarioController =require('../controllers/usuarios.Controller')
+const publicacionController = require ('../controllers/publicacionesController')
 const mdJWT = require('../middleware/jwt')
 
 // endpoints Grupos
@@ -25,5 +26,10 @@ router.post('/crear-usuario', usuarioController.crearUsuario)
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
 router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 
-module.exports = router
 
+// Rutas publiaciones
+
+router.post('/publicacion', publicacionController.crearPulicacion);
+router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
+
+module.exports = router
