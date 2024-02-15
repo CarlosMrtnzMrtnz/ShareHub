@@ -1,0 +1,31 @@
+.img-perfil{
+    width: 200px;
+    height: 200px;
+}
+
+.text-color{
+    color: var(--morado-claro);
+}
+
+.color-btn{
+    background-color: var(--amarillo-principal);
+    height: 27px;
+}
+
+.linea{
+    height: 1px;
+    width: 30%;
+    background-color: var(--morado-claro);
+}
+
+.inputEditar{
+    background-color: #ffff;
+}
+
+.btn-guardar{
+    background-color: var(--amarillo-principal);
+}
+
+.btn-cancelar{
+    background-color: var(--morado-claro);
+}
