@@ -20,24 +20,24 @@
             </div>
 
             <div class="cuadro rounded-5 p-3 d-flex flex-column justify-content-center">
-                <form class="">
+                <form [formGroup]="formregistro" (ngSubmit)="submitForm()">
                     <div class="p-3 ">
-                        <label for="inputPassword2" class="TextoShareHubFont visually">Correo electronico</label>
-                        <input type="text" class="form-control rounded-5 mt-3" />
+                        <label for="inputPassword" class="TextoShareHubFont visually" >Correo electronico</label>
+                        <input id="inputPassword" type="text" class="form-control rounded-5 mt-3" formControlName="CorreoUser"/>
                     </div>
                     <div class="p-3 ">
-                        <label for="inputPassword2" class="TextoShareHubFont visually rounded-5">Contraseña</label>
-                        <input type="password " class="form-control rounded-5 mt-3" />
+                        <label for="inputPassword1" class="TextoShareHubFont visually rounded-5" >Contraseña</label>
+                        <input id="inputPassword1" type="password" class="form-control rounded-5 mt-3" formControlName="clave" />
                     </div>
                     <div class="p-3 ">
-                        <label for="inputPassword2" class="TextoShareHubFont visually rounded-5">nombre de usuario
+                        <label for="inputPassword2" class="TextoShareHubFont visually rounded-5" >nombre de usuario
                         </label>
-                        <input type="password " class="form-control rounded-5 mt-3" />
+                        <input id="inputPassword2" type="text" class="form-control rounded-5 mt-3"formControlName="nombreuser" />
                     </div>
 
                     <div class="p-3 d-flex flex-column justify-content-center ">
-                        <button type="submit "
-                            class=" text-black my-3  boton  rounded-5">registrame
+                        <button type="submit"
+                            class=" text-black my-3  boton btn  rounded-5">registrame
                             bebe</button>
                     </div>
                 </form>
