@@ -6,6 +6,7 @@ const gruposController = require('../controllers/gruposController')
 const usuarioController =require('../controllers/usuarios.Controller')
 const publicacionController = require ('../controllers/publicacionesController')
 const mdJWT = require('../middleware/jwt')
+const sessionController = require ('../controllers/sessionController')
 
 // endpoints Grupos
 
@@ -29,6 +30,8 @@ router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 
 // Rutas publiaciones
 
+router.post('/ingreso', sessionController.generarToken)
+// -----------------------------rutas publicaciones---------------------------------------------------
 router.post('/publicacion', publicacionController.crearPulicacion);
 router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
 
