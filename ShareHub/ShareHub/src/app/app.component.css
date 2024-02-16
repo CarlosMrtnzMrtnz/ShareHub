@@ -1,5 +1,4 @@
-@media (max-width: 652px) {
-    .menuIzq{
-        display: none;
-    }
+.contenedorIzq{
+    width: 200px;
+    border-right: 1px solid var(--morado-claro);
 }
