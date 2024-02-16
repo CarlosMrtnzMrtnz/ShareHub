@@ -7,6 +7,7 @@ connectDB()
 const app = express();
 app.use(cors())
 app.use(express.json())
+
 app.use('/api', require('./routes/routes'))
 
 app.listen(4000, () => {

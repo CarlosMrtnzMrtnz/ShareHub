@@ -11,11 +11,23 @@ exports.consultarGrupos = async (req, res) => {
 
 exports.crearGrupo = async (req, res) => {
     try {
-        console.log(req.body);
-        let nuevoGrupo = new gruposModel(req.body)
-        await nuevoGrupo.save()
-        res.send(nuevoGrupo)
-        console.log(nuevoGrupo)
+
+        console.log("**** ",req);
+        const imagenGrupo = req.files
+
+
+        // let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
+        // req.body.imgGrupo = imagenGrupo.find((archivo) => {
+        //     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
+        // })
+
+        // req.body.imgGrupo = req.body.imgGrupo.filename
+
+        // let nuevoGrupo = new gruposModel(req.body)
+        // await nuevoGrupo.save()
+        // res.send(nuevoGrupo)
+        // console.log(nuevoGrupo)
+
     } catch (error) {
         console.log('error:', error)
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
