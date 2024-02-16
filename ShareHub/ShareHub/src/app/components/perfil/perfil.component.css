@@ -3,6 +3,13 @@
     height: 200px;
 }
 
+@media (max-width: 768px) {
+    .img-perfil{
+        width: 100px;
+        height: 100px;
+    }
+}
+
 .text-color{
     color: var(--morado-claro);
 }
@@ -28,4 +35,13 @@
 
 .btn-cancelar{
     background-color: var(--morado-claro);
+}
+
+.modal-bg{
+    background-color: var(--morado-oscuro-principal);
+}
+
+.btnResponsive{
+    background-color: var(--morado-oscuro-secundario);
+    height: 56px;
 }
