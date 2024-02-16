@@ -9,9 +9,9 @@ const mdlMulter = require("../middleware/multer")
 
 // endpoints Grupos
 
-router.get('/consultar-grupos', mdlMulter.array("pepe"), gruposController.consultarGrupos);
+router.get('/consultar-grupos', gruposController.consultarGrupos);
 router.get('/consultar-grupo/:grupoId', gruposController.consultarUnGrupo);
-router.post('/crear-grupo',  gruposController.crearGrupo)
+router.post('/crear-grupo', mdlMulter.array("pepe"),  gruposController.crearGrupo)
 router.put('/actualizar-grupo/:grupoId', gruposController.actualizarGrupo)
 router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
