@@ -19,7 +19,7 @@ export class RegistroComponent {
 
     constructor(private router: Router, private fb: FormBuilder) {
         this.formregistro = this.fb.group({
-            nombreuser: ['', [Validators.required]],
+            nombre: ['', [Validators.required]],
             CorreoUser: ['' ,[Validators.required]],
             clave: ['', [Validators.required]],
             imguser:[''],
