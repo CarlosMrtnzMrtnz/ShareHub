@@ -10,10 +10,10 @@ const storage = multer.diskStorage({
                 cb(null, "uploads/grupos")
                 break;
             case "perfil":
-                cb(null, "uploads/grupos")
+                cb(null, "uploads/perfil")
                 break; 
-            case "plublicacion":
-                cb(null, "uploads/grupos")
+            case "publicacion":
+                cb(null, "uploads/publicacion")
                 break;
             default:
                 cb(null, "uploads")

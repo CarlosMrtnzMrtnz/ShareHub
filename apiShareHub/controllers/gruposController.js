@@ -14,7 +14,12 @@ exports.crearGrupo = async (req, res) => {
 
         const imagenGrupo = req.files
 
-
+        console.log("******************************************************************");
+        console.log(req.body);
+        console.log("******************************************************************");
+        console.log("******************************************************************");
+        console.log(req.files);
+        console.log("******************************************************************");
         let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
         req.body.imgGrupo = imagenGrupo.find((archivo) => {
             return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())

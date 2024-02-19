@@ -20,23 +20,41 @@ import Swal from 'sweetalert2';
 export class RegistroGruposComponent {
     formGrupos: FormGroup;
     private GruposServices = inject(SharehubApiService);
+    inputFile!:any
+    archivo:any
 
     constructor(private fb: FormBuilder) {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
-            imgGrupo: ['']
+            pepe: [''],
         });
     }
 
-    submitForm() {
-            this.GruposServices.postGrupo(this.formGrupos.value).subscribe(respuestaAPI => {
-                Swal.fire({
-                    title: "Grupo creado correctamente!",
-                    icon: "success"
-                });
-                console.log(respuestaAPI)
-            })
+    agregarImagenArr(event:Event){
+        console.log("ayutooo")
+        this.inputFile = event.target
+        if(this.inputFile.files.length > 0){
+            this.archivo = this.inputFile.files[0]
         }
+        console.log(this.archivo)
     }
 
+    submitForm() {
+        console.log(this.formGrupos.value);
+
+
+        this.formGrupos.value.files = this.archivo
+        console.log(this.formGrupos.value);
+
+        this.GruposServices.postGrupo(this.formGrupos.value).subscribe(
+            (respuestaAPI) => {
+                Swal.fire({
+                    title: 'Grupo creado correctamente!',
+                    icon: 'success',
+                });
+                console.log(respuestaAPI);
+            }
+        );
+    }
+}

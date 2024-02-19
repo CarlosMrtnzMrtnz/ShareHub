@@ -15,10 +15,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-color hidden-nav-item" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Grupos</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink="/registro-grupos">Crear Grupo</a></li>
-                            <li><a class="dropdown-item" routerLink="/grupos">Mis Grupos</a></li>
-                        </ul>
+                    <ul class="dropdown-menu dropdown-bg">
+                        <li><a class="dropdown-item text-color" routerLink="/registro-grupos">Crear Grupo</a></li>
+                        <li><a class="dropdown-item text-color" routerLink="/mis-grupos">Mis Grupos</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-color hidden-nav-item" routerLink="/">Chat</a>
@@ -28,6 +28,9 @@
                         <img src="" alt="" class="img-perfil-navbar rounded-circle">
                     </a>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link text-color hidden-nav-item" (click)="clearSessionStorage()">Log Out</button>
+                </li>
 
                 <!-- dropdown hidden -->
                 <li class="nav-item dropdown dropdown-hiden-menu">
@@ -35,10 +38,20 @@
                         <img src="" alt="" class="img-perfil-navbar rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-bg">
+                        <li class="dropdown-item">
+                            <button class="dropdown-item text-color" (click)="clearSessionStorage()">Log Out</button>
+                        </li>
                         <li><a class="dropdown-item text-color" routerLink="/perfil">Perfil</a></li>
                         <li><a class="dropdown-item text-color" href="#">Notificaciones</a></li>
                         <li><a class="dropdown-item text-color" href="#">Explorar</a></li>
-                        <li><a class="dropdown-item text-color" routerLink="/grupos">Grupos</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-item text-color dropdown-toggle dropstart" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Grupos</a>
+                            <ul class="dropdown-menu dropdown-bg dropdown-submenu">
+                                <li><a class="dropdown-item text-color" routerLink="/registro-grupos">Crear Grupo</a></li>
+                                <li><a class="dropdown-item text-color" routerLink="/mis-grupos">Mis Grupos</a></li>
+                            </ul>
+                        </li>
                         <li><a class="dropdown-item text-color" routerLink="/">Chat</a></li>
                     </ul>
                 </li>
