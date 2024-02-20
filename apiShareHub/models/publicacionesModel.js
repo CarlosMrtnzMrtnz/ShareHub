@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const publicacionesSchema = mongoose.Schema({
     nombre: {
         type: String,
-        require: true
+        require: false
     },
     imagenUsuario: {
         type: String,
-        require: true
+        require: false
     },
     imagenPublicacion: {
         type: String,

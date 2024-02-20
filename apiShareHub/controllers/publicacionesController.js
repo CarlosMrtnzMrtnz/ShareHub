@@ -10,7 +10,7 @@ exports.crearPulicacion = async (req, res) => {
             return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
         })
 
-        req.body.imgPublicacion = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
+        req.body.imgPublicacion = `http://localhost:4000/uploads/${req.body.imagenPublicacion.filename}`
 
 
         let nuevaPublicacion = new publicacionesModel(req.body)

@@ -38,16 +38,21 @@ export class RegistroComponent {
 
 
     submitForm() {
-        console.log("lachupa");
+        console.log("registro");
 
         this.registroService.postusuario(this.formregistro.value).subscribe(respuestaAPI => {
             Swal.fire({
-                title: "Producto agregado correctamente! 😁",
+                title: "Usuario creado correctamente!",
                 icon: "success"
             });
             console.log(respuestaAPI);
 
-        })
+        }, error => {
+            Swal.fire({
+                title: "El correo electronico ya existe!",
+                icon: "error"
+            });
+        } )
 
     }
 }

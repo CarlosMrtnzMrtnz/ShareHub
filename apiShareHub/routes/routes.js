@@ -29,7 +29,7 @@ router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 
 router.post('/ingreso', sessionController.generarToken)
 // -----------------------------rutas publicaciones---------------------------------------------------
-router.post('/publicacion', mdlMulter.array("publicacion"), publicacionController.crearPulicacion);
+router.post('/publicacion', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
 router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
 
 module.exports = router

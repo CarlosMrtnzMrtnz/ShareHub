@@ -16,14 +16,14 @@ import { SharehubApiService } from '../../services/sharehub-api.service';
 })
 export class LoginComponent {
     ingreso: FormGroup;
-    inputNombre = new FormControl()
+    inputCorreo = new FormControl()
     inputClave = new FormControl()
     private SharehubApiServices = inject(SharehubApiService)
 
     ingresoUsuario() {
-        let nombre = this.inputNombre.value
+        let CorreoUser = this.inputCorreo.value
         let clave = this.inputClave.value
-        this.SharehubApiServices.postIngresoUsuario({nombre, clave}).subscribe(data =>{
+        this.SharehubApiServices.postIngresoUsuario({CorreoUser, clave}).subscribe(data =>{
             console.log(data);
             let dataApi:any = data
             sessionStorage.setItem('token', dataApi.token)
