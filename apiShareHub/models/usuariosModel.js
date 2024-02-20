@@ -25,4 +25,14 @@ const UsuariosModel =mongoose.Schema({
     timestamps :true,
     versionkey:false    
 })
+UsuariosModel.statics.findUserByEmail = async function(email) {
+    try {
+     
+        return await this.findOne({ CorreoUser: email });
+        
+    } catch (error) {
+        console.error('Error finding user by email:', error);
+        throw error;
+    }
+};
 module.exports = mongoose.model('usuario', UsuariosModel)

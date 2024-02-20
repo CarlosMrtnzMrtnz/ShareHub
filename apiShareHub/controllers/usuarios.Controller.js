@@ -3,38 +3,33 @@
 
 
 const UsuariosModel = require('../models/usuariosModel')
-const { query, validationResult } = require('express-validator');
-const { validateUsuario } = require('../validators/user');
 
 
 
-exports.crearUsuario = async (req, res) => {
+exports.crearUsuario = async(req, res) => {
     try {
-        // Check for validation errors
-        
-        // If validation passes, create a new user
-        let nuevoUsuario = new UsuariosModel(req.body);
-        await nuevoUsuario.save();
-
-        // Respond with the newly created user
-        res.status(201).json(nuevoUsuario);
+        console.log(req.body);
+            let nuevoUsuario = new UsuariosModel(req.body)
+            await nuevoUsuario.save()
+            res.send(nuevoUsuario)
+            console.log(nuevoUsuario)
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: "Ha ocurrido algo, comuníquese con el administrador" });
+        console.log('error:', error)
+        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
     }
-};
+}
+
+
+
+
 
 
 
 
 exports.consultarUnUsuario = async (req, res) => {
     try {
-        let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
-        if (!dataUsuario) {
-            res.status(404).send({ error: "No se ha encontrado el usuario" })
-        } else {
-            res.send(dataUsuario)
-        }
+        
+        verificarUsuario()
     } catch (error) {
         console.log('error:', error)
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
