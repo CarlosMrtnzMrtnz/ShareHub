@@ -14,7 +14,12 @@ exports.crearGrupo = async (req, res) => {
 
         const imagenGrupo = req.files
 
-
+        console.log("******************************************************************");
+        console.log(req.body);
+        console.log("******************************************************************");
+        console.log("******************************************************************");
+        console.log(req.files);
+        console.log("******************************************************************");
         let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
         req.body.imgGrupo = imagenGrupo.find((archivo) => {
             return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
@@ -77,7 +82,7 @@ exports.actualizarGrupo = async (req, res) => {
 
 exports.consultarUnGrupo = async (req, res) => {
     try {
-        let dataGrupo = await UsuarioModel.findById(req.params.grupoId)
+        let dataGrupo = await gruposModel.findById(req.params.grupoId)
         if (!dataGrupo) {
             res.status(404).send({ error: "No se ha encontrado el usuario" })
         } else {

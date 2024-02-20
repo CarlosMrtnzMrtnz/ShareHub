@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { SharehubApiService } from '../../services/sharehub-api.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-grupos',
@@ -14,18 +15,24 @@ export class GruposComponent {
     formGrupos: FormGroup;
     private GruposServices = inject(SharehubApiService);
     listadoDeGrupos = signal<any>([]);
+    idGrupoUrl : null | string
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private rutaId: ActivatedRoute) {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
             imgGrupo: [''],
         });
+        this.idGrupoUrl = this.rutaId.snapshot.paramMap.get('idGrupo');
     }
 
     ngOnInit(): void {
         // this.consultarGrupos();
         console.log('Se inicio el componente');
+
+        this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe(data => {
+            console.log(data)
+        })
     }
 
     // consultarGrupos() {
