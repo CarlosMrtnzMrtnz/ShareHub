@@ -31,23 +31,21 @@ export class RegistroGruposComponent {
         });
     }
 
-    agregarImagenArr(event:Event){
-        console.log("ayutooo")
-        this.inputFile = event.target
-        if(this.inputFile.files.length > 0){
-            this.archivo = this.inputFile.files[0]
+    agregarImagenArr(event:any){
+        if(event.target.files.length > 0){
+            const archivoGrupo = event.target.files[0]
+            this.formGrupos.get("pepe")!.setValue(archivoGrupo)
         }
-        console.log(this.archivo)
     }
 
     submitForm() {
-        console.log(this.formGrupos.value);
 
+        const formDataGrupos = new FormData()
+        formDataGrupos.append('nombreGrupo', this.formGrupos.get("nombreGrupo")!.value)
+        formDataGrupos.append('descripcionGrupo', this.formGrupos.get("descripcionGrupo")!.value)
+        formDataGrupos.append('pepe', this.formGrupos.get("pepe")!.value)
 
-        this.formGrupos.value.files = this.archivo
-        console.log(this.formGrupos.value);
-
-        this.GruposServices.postGrupo(this.formGrupos.value).subscribe(
+        this.GruposServices.postGrupo(formDataGrupos).subscribe(
             (respuestaAPI) => {
                 Swal.fire({
                     title: 'Grupo creado correctamente!',

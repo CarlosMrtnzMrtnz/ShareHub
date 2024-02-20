@@ -15,6 +15,7 @@ export class GruposListadoTemplateComponent {
     private GruposServices = inject(SharehubApiService);
     @Input() nombreGrupo!: string;
     @Input() imgGrupo!: string;
+    @Input() idGrupo!: string;
 
     @Output() dataGrupoTemplate = new EventEmitter();
 
@@ -25,6 +26,11 @@ export class GruposListadoTemplateComponent {
         };
         this.dataGrupoTemplate.emit(dataGrupo);
         console.log(dataGrupo)
+
+    }
+
+    consultarUnGrupo(idGrupo: String){
+
 
     }
 }

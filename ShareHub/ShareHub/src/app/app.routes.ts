@@ -8,9 +8,10 @@ import { PerfilComponent } from './components/perfil/perfil.component'
 import { RegistroGruposComponent } from "./components/registro-grupos/registro-grupos.component";
 
 const tituloPagina = "ShareHub"
+
 export const routes: Routes = [
     {path:'inicio',title: `Inicio | ${tituloPagina}`,component:InicioComponent},
-    {path:'grupos',title: `Grupos | ${tituloPagina}`,component:GruposComponent},
+    {path:`grupos/:idGrupo`,title: `Grupos | ${tituloPagina}`,component:GruposComponent},
     {path:'mis-grupos', title: `Mis grupos | ${tituloPagina}`, component:ListadoGruposComponent},
     {path:'perfil',title: `Perfil | ${tituloPagina}`,component:PerfilComponent},
     {path:'',title:"login",component:LoginComponent},

@@ -2,9 +2,8 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log("🚀 ~ req:", req.body)
 
-        const directorioApiArchivo = req.body.directorio
+        const directorioApiArchivo = req.params.directorio
         switch (directorioApiArchivo) {
             case "grupo":
                 cb(null, "uploads/grupos")

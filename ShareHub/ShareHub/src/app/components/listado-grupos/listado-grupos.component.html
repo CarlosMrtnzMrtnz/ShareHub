@@ -2,7 +2,7 @@
     <div class="TextoShareHubFont text-center text-white fs-3 my-5">Mis grupos</div>
     <section>
         @for (grupo of gruposData(); track grupo._id) {
-        <app-grupos-listado-template [nombreGrupo]="grupo.nombreGrupo"
+        <app-grupos-listado-template [nombreGrupo]="grupo.nombreGrupo" [idGrupo]="grupo._id"
             [imgGrupo]="grupo.imgGrupo" (dataGrupoTemplate)="GrupoDesdeTemplate($event, grupo._id)"></app-grupos-listado-template>
         }
     </section>

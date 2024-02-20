@@ -15,12 +15,12 @@ export class SharehubApiService {
         return this.http.get(this.urlApi + '/consultar-grupos');
     }
 
-    getUnGrupo(grupoId: string) {
-        return this.http.get(`${this.urlApi}/consultar-grupo${grupoId}`);
+    getUnGrupo(grupoId: string | null) {
+        return this.http.get(`${this.urlApi}/consultar-grupo/${grupoId}`);
     }
 
     postGrupo(dataGrupo: any) {
-        return this.http.post(`${this.urlApi}/crear-grupo`, dataGrupo);
+        return this.http.post(`${this.urlApi}/crear-grupo/grupo`, dataGrupo);
     }
 
     deleteGrupo(grupoId: string) {

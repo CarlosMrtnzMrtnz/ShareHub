@@ -40,7 +40,7 @@
     display: block;
 }
 
-@media (max-width: 652px) {
+@media (max-width: 1190.40px) {
     .hidden-nav-item {
         display: none;
     }
