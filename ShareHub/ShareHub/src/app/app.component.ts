@@ -30,7 +30,7 @@ export class AppComponent {
   sesionUsuario: boolean = false
 
   ngOnInit(){
-    if(sessionStorage.getItem("login") == '1'){
+    if(sessionStorage.getItem("token") != null){
         this.sesionUsuario = true
     }else{
         this.sesionUsuario = false

@@ -29,7 +29,7 @@ export class RegistroComponent {
     }
     ngOnInit() {
 
-        if (sessionStorage.getItem("login") == '1') {
+        if (sessionStorage.getItem("token") != null) {
             this.router.navigate(['/inicio'])
         }
     }

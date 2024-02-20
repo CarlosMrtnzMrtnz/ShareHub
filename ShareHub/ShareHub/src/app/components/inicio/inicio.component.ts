@@ -17,7 +17,7 @@ import { Ipublicaciones } from '../../../../models/publicacion';
 export class InicioComponent {
     constructor(private router: Router){}
     ngOnInit(){
-        if(sessionStorage.getItem("login") == null){
+        if(sessionStorage.getItem("token") == null){
             this.router.navigate(['/'])
         }
       }

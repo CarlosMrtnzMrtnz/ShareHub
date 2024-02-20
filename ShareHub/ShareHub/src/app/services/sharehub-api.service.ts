@@ -12,7 +12,8 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        return this.http.get(this.urlApi + '/consultar-grupos');
+        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
     getUnGrupo(grupoId: string) {
@@ -57,4 +58,20 @@ export class SharehubApiService {
             dataProducto
         );
     }
+// ------------------------------------Servicios Publicacion---------------------
+    postPublicacion(dataPublicacion: any) {
+        return this.http.post(`${this.urlApi}/publicacion`, dataPublicacion);
+    }
+
+
+// -------------------------------------Validacion token------------------------
+    estaLogueado() :boolean {
+        let estado = (sessionStorage.getItem('token')) ? true : false
+        return estado
+    }
+
+    postIngresoUsuario(dataLogin:any) {
+        return this.http.post(`${this.urlApi}/ingreso`, dataLogin)
+    }
+
 }

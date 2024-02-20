@@ -31,25 +31,33 @@
         <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0">      +       </button>
     </div>
 </div>
-<!-- Button trigger modal -->
+<!--------------------------------------------- Button trigger modal ----------------------->
 <div class="d-flex justify-content-center">
     <button type="button" class="rounded-pill boton btn w-50 my-2 mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar</button>
 </div>
 
-  <!-- Modal -->
+  <!-------------------------------------------------- Modal -------------------------------->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content modal-bg">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+            <div class="d-flex flex-column">
+                <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">¿Que quieres decir en esta publicacion?</label>
+                <textarea name="" id="inputDescGrupo" cols="30" rows="5"
+                    class="inputEditar rounded px-3"></textarea>
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Subir imagen</label>
+                <input type="file" id="inputNombreGrupo" class="rounded-pill inputEditar border-0 px-3">
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary fw-semibold" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn fw-semibold">Publicar</button>
+          <button type="button" class="btn  text-dark btn-cancelar fw-semibold" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-guardar fw-semibold">Publicar</button>
         </div>
       </div>
     </div>

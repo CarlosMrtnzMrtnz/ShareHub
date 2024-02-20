@@ -5,9 +5,14 @@
             <div class="me-3"><img class="usuario"  src="{{rutaImagenUsuario}}" alt=""></div>
             <div class="TextoShareHubFont d-grid align-items-center text-white ms-3"><h4 class="m-0 TextoShareHubFont fw-bold">{{rutaNombre}}</h4></div>
         </div>
-        <div class="d-grid align-content-center">
-            <button class="btn text-white fs-3" >X</button>
-        </div>
+        <div class="dropdown">
+            <button class="btn  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+            <ul class="dropdown-menu" >
+              <li><a class="dropdown-item" href="#">Editar</a></li>
+              <li><a class="dropdown-item" href="#">Eliminar</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </div>
     </div>
     <div class="d-flex justify-content-center">
         <img class="imgPublicacion mt-3" src="{{rutaImagen}}" alt="">
@@ -33,6 +38,14 @@
         </div>
     </div>
     <div class="comentario mt-3" *ngIf="mostrarInput">
+        <div class="dropdown d-flex justify-content-end">
+            <button class="btn  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+            <ul class="dropdown-menu" >
+              <li><a class="dropdown-item" href="#">Editar</a></li>
+              <li><a class="dropdown-item" href="#">Eliminar</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </div>
         <div class="d-flex mt-3 m-2">
             <div class="ms-4 me-2"><img class="usuario2"  src="{{rutaImagenUsuario}}" alt=""></div>
             <div class="TextoShareHubFont d-grid align-items-center text-white ms-1">
