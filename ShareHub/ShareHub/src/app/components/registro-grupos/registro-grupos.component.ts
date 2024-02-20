@@ -39,20 +39,28 @@ export class RegistroGruposComponent {
     }
 
     submitForm() {
+        if (this.formGrupos.valid) {
+            const formDataGrupos = new FormData();
+            formDataGrupos.append('nombreGrupo', this.formGrupos.get('nombreGrupo')!.value);
+            formDataGrupos.append('descripcionGrupo', this.formGrupos.get('descripcionGrupo')!.value);
+            formDataGrupos.append('pepe', this.formGrupos.get('pepe')!.value);
 
-        const formDataGrupos = new FormData()
-        formDataGrupos.append('nombreGrupo', this.formGrupos.get("nombreGrupo")!.value)
-        formDataGrupos.append('descripcionGrupo', this.formGrupos.get("descripcionGrupo")!.value)
-        formDataGrupos.append('pepe', this.formGrupos.get("pepe")!.value)
-
-        this.GruposServices.postGrupo(formDataGrupos).subscribe(
-            (respuestaAPI) => {
-                Swal.fire({
-                    title: 'Grupo creado correctamente!',
-                    icon: 'success',
-                });
-                console.log(respuestaAPI);
-            }
-        );
+            this.GruposServices.postGrupo(formDataGrupos).subscribe(
+                (respuestaAPI) => {
+                    Swal.fire({
+                        title: 'Grupo creado correctamente!',
+                        icon: 'success',
+                    });
+                    console.log(respuestaAPI);
+                }
+            );
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'por favor ingresa los datos requeridos para crear un grupo',
+                icon: 'error',
+            });
+        }
     }
+
 }
