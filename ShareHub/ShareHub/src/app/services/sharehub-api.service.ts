@@ -35,8 +35,8 @@ export class SharehubApiService {
     }
 
     // usuarios ---------------------------------------------------------
-    getUsuario(idusuario: string) {
-        return this.http.get(`${this.urlApi}/consultar-usuario/${idusuario}`);
+    getUsuario(CorreoUser: string) {
+        return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);
     }
     getUsuarios() {
         return this.http.get(`${this.urlApi}/consultar-usuario/`);

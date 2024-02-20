@@ -50,18 +50,12 @@ export class RegistroComponent {
 
 
     submitForm() {
+        console.log('esta');
         this.productosServices.getUsuarios().subscribe({
             next: (dataUsers) => {
                 this.productosData.set(dataUsers)
-
-
+                console.log(dataUsers);
         this.registroService.postusuario(this.formregistro.value).subscribe(respuestaAPI => {
-
-            let verificar= this.formregistro.value.CorreoUser
-            console.log(this.productosData.length);
-
-
-
 
             Swal.fire({
                 title: "Usuario Agregado! 😁",
@@ -79,4 +73,3 @@ export class RegistroComponent {
 
     }
 }
-
