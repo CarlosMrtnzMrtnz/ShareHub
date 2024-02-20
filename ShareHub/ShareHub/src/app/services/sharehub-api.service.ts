@@ -8,7 +8,7 @@ export class SharehubApiService {
     private http = inject(HttpClient);
     private urlApi: string = 'http://localhost:4000/api';
 
-    constructor() {}
+    constructor() { }
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
@@ -34,7 +34,8 @@ export class SharehubApiService {
         );
     }
 
-    // usuairos ---------------------------------------------------------
+    //   -------------------------- SERVICE PERFILES --------------------------
+
     getUsuario(idProducto: string) {
         return this.http.get(`${this.urlApi}/consultar-usuario/${idProducto}`);
     }
@@ -58,3 +59,5 @@ export class SharehubApiService {
         );
     }
 }
+
+
