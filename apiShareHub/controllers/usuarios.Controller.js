@@ -11,7 +11,7 @@ exports.consultarUsuarios = async(req, res) => {
 exports.crearUsuario = async(req, res) => {
     let verificarCorreo = await UsuariosModel.find({CorreoUser: req.body.CorreoUser})
     try {
-        console.log(verificarCorreo);
+        // console.log(verificarCorreo);
 
             let correoNuevo = req.body.CorreoUser
             let regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -19,7 +19,9 @@ exports.crearUsuario = async(req, res) => {
                 let nuevoUsuario = new UsuariosModel(req.body)
                 await nuevoUsuario.save()
                 res.send(nuevoUsuario)
-                console.log(nuevoUsuario)
+                // console.log(nuevoUsuario)
+                console.log(`el objeto encontrado es ${verificarCorreo}`);
+
             } else {
                 Swal.fire({
                     title: "ese correo invalido! 😁",

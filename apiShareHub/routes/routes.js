@@ -18,7 +18,7 @@ router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
 // ?Rutas Uauario
-router.get('/consultar-usuario', usuarioController.consultarUsuarios);
+router.get('/consultar-usuario',mdJWT.verificarToken, usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
@@ -29,7 +29,7 @@ router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 
 router.post('/ingreso', sessionController.generarToken)
 // -----------------------------rutas publicaciones---------------------------------------------------
-router.post('/publicacion', publicacionController.crearPulicacion);
+router.post('/publicacion', mdlMulter.array("publicacion"), publicacionController.crearPulicacion);
 router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
 
 module.exports = router

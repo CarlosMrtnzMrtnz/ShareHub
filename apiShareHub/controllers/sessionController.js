@@ -6,10 +6,10 @@ exports.generarToken = async (req, res) => {
     const {nombre, clave} = req.body
     const usuario = await UsuariosModel.findOne({ nombre })
     if(!usuario){
-        return res.status(401).json({error: "Credenciales invalidas"})
+        return res.status(401).json({error: "Credenciales invalidas (usuario)"})
     } 
     if (usuario.clave !== clave) {
-        return res.status(401).json({error: "Credenciales invalidas"})
+        return res.status(401).json({error: "Credenciales invalidas (clave)"})
     }
 
     const payload = {
