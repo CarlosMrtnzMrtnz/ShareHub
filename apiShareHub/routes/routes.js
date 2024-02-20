@@ -6,7 +6,15 @@ const gruposController = require('../controllers/gruposController')
 const usuarioController =require('../controllers/usuarios.Controller')
 const publicacionController = require ('../controllers/publicacionesController')
 const mdJWT = require('../middleware/jwt')
-const sessionController = require ('../controllers/sessionController')
+const sessionController = require ('../controllers/sessionController');
+const { validationResult  } = require('express-validator');
+const { validateUsuario } = require('../validators/user');
+const UsuariosModel = require('../models/usuariosModel');
+
+
+
+
+
 
 // endpoints Grupos
 
@@ -20,10 +28,26 @@ router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
 
-// ?Rutas Uauario
+// ?Rutas Usuario
 router.get('/consultar-usuario', usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
-router.post('/crear-usuario', usuarioController.crearUsuario)
+router.post('/crear-usuario',validateUsuario, async (req, res) => {
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        let nuevoUsuario = new UsuariosModel(req.body);
+        await nuevoUsuario.save();
+        
+        res.status(201).json(nuevoUsuario);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: "Ha ocurrido algo, comuníquese con el administrador" });
+        
+    }
+}); 
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
 router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 

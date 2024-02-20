@@ -1,5 +1,60 @@
+
+
+
+
 const UsuariosModel = require('../models/usuariosModel')
-exports.consultarUsuarios = async(req, res) => {
+const { query, validationResult } = require('express-validator');
+const { validateUsuario } = require('../validators/user');
+
+
+
+exports.crearUsuario = async (req, res) => {
+    try {
+        // Check for validation errors
+        
+        // If validation passes, create a new user
+        let nuevoUsuario = new UsuariosModel(req.body);
+        await nuevoUsuario.save();
+
+        // Respond with the newly created user
+        res.status(201).json(nuevoUsuario);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: "Ha ocurrido algo, comuníquese con el administrador" });
+    }
+};
+
+
+
+
+exports.consultarUnUsuario = async (req, res) => {
+    try {
+        let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
+        if (!dataUsuario) {
+            res.status(404).send({ error: "No se ha encontrado el usuario" })
+        } else {
+            res.send(dataUsuario)
+        }
+    } catch (error) {
+        console.log('error:', error)
+        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.consultarUsuarios = async (req, res) => {
     try {
         let dataUsuarios = await UsuariosModel.find()
         res.json(dataUsuarios)
@@ -8,41 +63,16 @@ exports.consultarUsuarios = async(req, res) => {
     }
 }
 
-exports.crearUsuario = async(req, res) => {
-    let verificarCorreo = await UsuariosModel.find({CorreoUser: req.body.CorreoUser})
-    try {
-        console.log(verificarCorreo);
-
-            let correoNuevo = req.body.CorreoUser
-            let regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-            if (regexCorreo.test(correoNuevo)) {
-                let nuevoUsuario = new UsuariosModel(req.body)
-                await nuevoUsuario.save()
-                res.send(nuevoUsuario)
-                console.log(nuevoUsuario)
-            } else {
-                Swal.fire({
-                    title: "ese correo invalido! 😁",
-                });
-            }
-        
-
-       
-    } catch (error) {
-        console.log('error:', error)
-        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
-    }
-}
 
 
-exports.eliminarUsuario = async(req, res) => {
+exports.eliminarUsuario = async (req, res) => {
     try {
         let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
         if (!dataUsuario) {
             res.status(404).send({ error: "No se ha encontrado el usuario" })
             return
         }
-        await UsuariosModel.findOneAndDelete({ _id: req.params.usuarioId })
+        await UsuariosModel.findOneAndDelete({ CorreoUser: req.params.usuarioId })
         res.status(200).send({ msg: "Eliminado correctamente" })
     } catch (error) {
         console.log('error:', error)
@@ -50,11 +80,11 @@ exports.eliminarUsuario = async(req, res) => {
     }
 }
 
-exports.actualizarUsuario = async(req, res) => {
+exports.actualizarUsuario = async (req, res) => {
     try {
 
         if (req.params.usuarioId.length == 24) {
-            let dataUsuario = await UsuarioModel.findById(req.params.usuarioId)
+            let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
 
             if (!dataUsuario) {
                 res.status(404).send({ error: "No se ha encontrado el usuario" })
@@ -80,16 +110,4 @@ exports.actualizarUsuario = async(req, res) => {
     }
 }
 
-exports.consultarUnUsuario = async(req, res) => {
-    try {
-        let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
-        if (!dataUsuario) {
-            res.status(404).send({ error: "No se ha encontrado el usuario" })
-        } else {
-            res.send(dataUsuario)
-        }
-    } catch (error) {
-        console.log('error:', error)
-        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
-    }
-}
+

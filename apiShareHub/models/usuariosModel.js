@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const usuariomodelo =mongoose.Schema({
-    nombreuser: {
+const UsuariosModel =mongoose.Schema({
+    nombre: {
         type: String,
         require: true
     },
@@ -25,4 +25,4 @@ const usuariomodelo =mongoose.Schema({
     timestamps :true,
     versionkey:false    
 })
-module.exports = mongoose.model('usuario', usuariomodelo)
+module.exports = mongoose.model('usuario', UsuariosModel)
