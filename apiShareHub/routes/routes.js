@@ -20,7 +20,7 @@ router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
 
-// ?Rutas Uauario
+// Rutas Uauario
 router.get('/consultar-usuario', usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)

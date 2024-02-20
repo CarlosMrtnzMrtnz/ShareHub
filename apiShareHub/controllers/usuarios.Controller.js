@@ -1,5 +1,5 @@
 const UsuariosModel = require('../models/usuariosModel')
-exports.consultarUsuarios = async(req, res) => {
+exports.consultarUsuarios = async (req, res) => {
     try {
         let dataUsuarios = await UsuariosModel.find()
         res.json(dataUsuarios)
@@ -8,26 +8,26 @@ exports.consultarUsuarios = async(req, res) => {
     }
 }
 
-exports.crearUsuario = async(req, res) => {
-    let verificarCorreo = await UsuariosModel.find({CorreoUser: req.body.CorreoUser})
+exports.crearUsuario = async (req, res) => {
+    let verificarCorreo = await UsuariosModel.find({ CorreoUser: req.body.CorreoUser })
     try {
         console.log(verificarCorreo);
 
-            let correoNuevo = req.body.CorreoUser
-            let regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-            if (regexCorreo.test(correoNuevo)) {
-                let nuevoUsuario = new UsuariosModel(req.body)
-                await nuevoUsuario.save()
-                res.send(nuevoUsuario)
-                console.log(nuevoUsuario)
-            } else {
-                Swal.fire({
-                    title: "ese correo invalido! 😁",
-                });
-            }
-        
+        let correoNuevo = req.body.CorreoUser
+        let regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        if (regexCorreo.test(correoNuevo)) {
+            let nuevoUsuario = new UsuariosModel(req.body)
+            await nuevoUsuario.save()
+            res.send(nuevoUsuario)
+            console.log(nuevoUsuario)
+        } else {
+            Swal.fire({
+                title: "ese correo invalido! 😁",
+            });
+        }
 
-       
+
+
     } catch (error) {
         console.log('error:', error)
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
@@ -35,7 +35,7 @@ exports.crearUsuario = async(req, res) => {
 }
 
 
-exports.eliminarUsuario = async(req, res) => {
+exports.eliminarUsuario = async (req, res) => {
     try {
         let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
         if (!dataUsuario) {
@@ -50,7 +50,7 @@ exports.eliminarUsuario = async(req, res) => {
     }
 }
 
-exports.actualizarUsuario = async(req, res) => {
+exports.actualizarUsuario = async (req, res) => {
     try {
 
         if (req.params.usuarioId.length == 24) {
@@ -80,7 +80,7 @@ exports.actualizarUsuario = async(req, res) => {
     }
 }
 
-exports.consultarUnUsuario = async(req, res) => {
+exports.consultarUnUsuario = async (req, res) => {
     try {
         let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
         if (!dataUsuario) {
