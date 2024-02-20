@@ -8,7 +8,7 @@ export class SharehubApiService {
     private http = inject(HttpClient);
     private urlApi: string = 'http://localhost:4000/api';
 
-    constructor() {}
+    constructor() { }
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
@@ -75,3 +75,5 @@ export class SharehubApiService {
     }
 
 }
+
+
