@@ -2,6 +2,7 @@
 
 
 
+const usuariosModel = require('../models/usuariosModel');
 const UsuariosModel = require('../models/usuariosModel')
 
 
