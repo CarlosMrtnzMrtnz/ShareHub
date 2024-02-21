@@ -59,6 +59,29 @@ exports.consultarUsuarios = async (req, res) => {
     }
 }
 
+exports.crearUsuario = async(req, res) => {
+    let verificarCorreo = await UsuariosModel.find({CorreoUser: req.body.CorreoUser})
+    try {
+        console.log(verificarCorreo);
+
+        if (verificarCorreo.length == 0) {
+            let correoNuevo = req.body.CorreoUser
+            let regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            if (regexCorreo.test(correoNuevo)) {
+                let nuevoUsuario = new UsuariosModel(req.body)
+                await nuevoUsuario.save()
+                res.send(nuevoUsuario)
+            }
+        } else {
+            res.status(403).json({msg: "ek correo ya existe"})
+        }
+    
+       
+    } catch (error) {
+        console.log('error:', error)
+        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
+    }
+}
 
 
 exports.eliminarUsuario = async (req, res) => {

@@ -1,4 +1,4 @@
-import { Component, inject,signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -27,8 +27,8 @@ export class RegistroComponent {
             nombre: ['', [Validators.required, Validators.pattern(this.regexAlfabetico)]],
             CorreoUser: ['', [Validators.required, Validators.pattern(this.regexEmail)]],
             clave: ['', [Validators.required]],
-            imguser:[''],
-            descripcionuser:['']
+            imguser: [''],
+            descripcionuser: ['']
 
         })
     }
@@ -38,7 +38,7 @@ export class RegistroComponent {
 
     ngOnInit() {
 
-        if (sessionStorage.getItem("login") == '1') {
+        if (sessionStorage.getItem("token") != null) {
             this.router.navigate(['/inicio'])
         };
 
@@ -50,26 +50,21 @@ export class RegistroComponent {
 
 
     submitForm() {
-        console.log('esta');
-        this.productosServices.getUsuarios().subscribe({
-            next: (dataUsers) => {
-                this.productosData.set(dataUsers)
-                console.log(dataUsers);
+        console.log("registro");
+
         this.registroService.postusuario(this.formregistro.value).subscribe(respuestaAPI => {
 
             Swal.fire({
-                title: "Usuario Agregado! 😁",
+                title: "Usuario creado correctamente!",
                 icon: "success"
             });
             console.log(respuestaAPI);
+
+
+        }, error => {
+            Swal.fire({
+                title: "El correo electronico ya existe!",
+                icon: "error"
+            });
         })
-
-
-            },
-            error: (err) => {
-                console.log(err);
-            }
-        })
-
-    }
-}
+    }}

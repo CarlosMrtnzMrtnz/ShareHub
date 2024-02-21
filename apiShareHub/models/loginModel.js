@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose")
 
 const loginModelSchema = mongoose.Schema ({
-    nombre: {
+    CorreoUser: {
         type: String,
         require: true
     },

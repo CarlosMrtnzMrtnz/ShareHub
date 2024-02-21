@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SharehubApiService } from '../../services/sharehub-api.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,6 +16,25 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
     ingreso: FormGroup;
+    inputCorreo = new FormControl()
+    inputClave = new FormControl()
+    private SharehubApiServices = inject(SharehubApiService)
+
+    ingresoUsuario() {
+        let CorreoUser = this.inputCorreo.value
+        let clave = this.inputClave.value
+        this.SharehubApiServices.postIngresoUsuario({CorreoUser, clave}).subscribe(data =>{
+            console.log(data);
+            let dataApi:any = data
+            sessionStorage.setItem('token', dataApi.token)
+            location.reload()
+        }, err => {
+            console.log(err);
+
+        }
+        )
+    }
+
 
     constructor(private router: Router, private fb: FormBuilder){
 
@@ -31,7 +50,7 @@ export class LoginComponent {
 
 
     ngOnInit(){
-        if(sessionStorage.getItem("login") == '1'){
+        if(sessionStorage.getItem("token") != null){
             this.router.navigate(['/inicio'])
         }
 

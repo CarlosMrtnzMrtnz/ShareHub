@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config({ path: 'config.env' })
 
 exports.verificarToken = (req, res, next) =>{
-    let token = req.headers.authorization
-    token = token.split(' ')
-
+    if (req.headers.authorization !== undefined) {
+        let token = req.headers.authorization
+        token = token.split(' ')
+        
     if (!token) {
         return res.status(403).send({error: "Token de seguridad invalido (no se envio token)"})        
     }
@@ -15,4 +16,8 @@ exports.verificarToken = (req, res, next) =>{
         req.usuario = decoded
         next()
     })
+    } else {
+        return res.status(403).send({error: "Token de seguridad no proporcionado)"})
+    }
+
 }

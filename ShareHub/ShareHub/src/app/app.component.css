@@ -1,5 +1,10 @@
-@media (max-width: 652px) {
-    .menuIzq{
+.contenedorIzq{
+    width: 200px;
+    border-right: 1px solid var(--morado-claro);
+}
+
+@media (max-width: 1190.40px) {
+    .contenedorDer{
         display: none;
     }
 }

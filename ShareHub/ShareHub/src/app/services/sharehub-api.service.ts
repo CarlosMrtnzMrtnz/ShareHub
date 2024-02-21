@@ -8,19 +8,20 @@ export class SharehubApiService {
     private http = inject(HttpClient);
     private urlApi: string = 'http://localhost:4000/api';
 
-    constructor() {}
+    constructor() { }
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        return this.http.get(this.urlApi + '/consultar-grupos');
+        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
-    getUnGrupo(grupoId: string) {
-        return this.http.get(`${this.urlApi}/consultar-grupo${grupoId}`);
+    getUnGrupo(grupoId: string | null) {
+        return this.http.get(`${this.urlApi}/consultar-grupo/${grupoId}`);
     }
 
     postGrupo(dataGrupo: any) {
-        return this.http.post(`${this.urlApi}/crear-grupo`, dataGrupo);
+        return this.http.post(`${this.urlApi}/crear-grupo/grupo`, dataGrupo);
     }
 
     deleteGrupo(grupoId: string) {
@@ -56,4 +57,22 @@ export class SharehubApiService {
             dataUser
         );
     }
+// ------------------------------------Servicios Publicacion---------------------
+    postPublicacion(dataPublicacion: any) {
+        return this.http.post(`${this.urlApi}/publicacion`, dataPublicacion);
+    }
+
+
+// -------------------------------------Validacion token------------------------
+    estaLogueado() :boolean {
+        let estado = (sessionStorage.getItem('token')) ? true : false
+        return estado
+    }
+
+    postIngresoUsuario(dataLogin:any) {
+        return this.http.post(`${this.urlApi}/ingreso`, dataLogin)
+    }
+
 }
+
+
