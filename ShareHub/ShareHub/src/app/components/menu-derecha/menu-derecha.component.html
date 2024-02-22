@@ -1,64 +1,31 @@
-<div class="cuadro card  m-5 col  ">
+<section class="position-fixed ">
+    <div class="cuadro card  m-5 col tamaño_caja">
 
-    <div class="card-body  " >
-        <div class="d-flex m-2" *ngFor="let imagen of miladitoderecho()">
-            <img class="esta" [src]="imagen.ruta1" alt="">
-            <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{imagen.nombre}}</p>
-            <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 ">      +       </button>
-        </div>
-
-    </div>
-
-
-</div>
-<div class="cuadro card  m-5 col">
-    <div class="card-body d-flex ">
-        <img class="esta"
-            src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="">
-        <p class=" ms-4 text-white m-0 d-grid align-items-center">esta</p>
-        <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0">      +       </button>
-    </div>
-    <div class="card-body d-flex ">
-        <img class="esta"
-            src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="">
-        <p class=" ms-4 text-white m-0 d-grid align-items-center">esta</p>
-        <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0">      +       </button>
-    </div>
-    <div class="card-body d-flex ">
-        <img class="esta"
-            src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="">
-        <p class=" ms-4 text-white m-0 d-grid align-items-center">esta</p>
-        <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0">      +       </button>
-    </div>
-</div>
-<!--------------------------------------------- Button trigger modal ----------------------->
-<div class="d-flex justify-content-center">
-    <button type="button" class="rounded-pill boton btn w-50 my-2 mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar</button>
-</div>
-
-  <!-------------------------------------------------- Modal -------------------------------->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
-        <div class="modal-header">
-          <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar</h1>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="d-flex flex-column">
-                <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">¿Que quieres decir en esta publicacion?</label>
-                <textarea type="text" name="" id="inputDescGrupo" cols="30" rows="5"
-                    class="inputEditar rounded px-3" formControlName="textoPublicacion"></textarea>
+        <div class="card-body  ">
+            <div class="d-flex m-2" *ngFor="let imagen of miladitoderecho()">
+                <img class="esta" [src]="imagen.ruta1" alt="">
+                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{imagen.nombre}}</p>
+                <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button>
             </div>
-            <div class="mb-3 d-flex flex-column">
-                <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Subir imagen</label>
-                <input type="file" (change)="agregarImg($event)" formControlName="imgPublicacion" id="inputNombreGrupo" class="rounded-pill inputEditar border-0 px-3">
-            </div>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn  text-dark btn-cancelar fw-semibold" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-guardar fw-semibold">Publicar</button>
-        </div>
-      </div>
+
+
     </div>
-  </div>
+    <div class="cuadro card  m-5 col  ">
+
+        <div class="card-body  ">
+            <div class="d-flex m-2" *ngFor="let imagen of miladitoderecho()">
+                <img class="esta" [src]="imagen.ruta1" alt="">
+                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{imagen.nombre}}</p>
+                <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
