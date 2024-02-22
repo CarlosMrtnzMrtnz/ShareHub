@@ -27,14 +27,14 @@ export class RegistroGruposComponent {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
-            pepe: [''],
+            imgGrupo: [''],
         });
     }
 
     agregarImagenArr(event:any){
         if(event.target.files.length > 0){
             const archivoGrupo = event.target.files[0]
-            this.formGrupos.get("pepe")!.setValue(archivoGrupo)
+            this.formGrupos.get("imgGrupo")!.setValue(archivoGrupo)
         }
     }
 
@@ -43,7 +43,7 @@ export class RegistroGruposComponent {
             const formDataGrupos = new FormData();
             formDataGrupos.append('nombreGrupo', this.formGrupos.get('nombreGrupo')!.value);
             formDataGrupos.append('descripcionGrupo', this.formGrupos.get('descripcionGrupo')!.value);
-            formDataGrupos.append('pepe', this.formGrupos.get('pepe')!.value);
+            formDataGrupos.append('imgGrupo', this.formGrupos.get('imgGrupo')!.value);
 
             this.GruposServices.postGrupo(formDataGrupos).subscribe(
                 (respuestaAPI) => {
