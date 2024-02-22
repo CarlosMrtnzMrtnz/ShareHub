@@ -1,5 +1,5 @@
 const UsuariosModel = require('../models/usuariosModel')
-exports.consultarUsuarios = async(req, res) => {
+exports.consultarUsuarios = async (req, res) => {
     try {
         let dataUsuarios = await UsuariosModel.find()
         res.json(dataUsuarios)
@@ -8,8 +8,8 @@ exports.consultarUsuarios = async(req, res) => {
     }
 }
 
-exports.crearUsuario = async(req, res) => {
-    let verificarCorreo = await UsuariosModel.find({CorreoUser: req.body.CorreoUser})
+exports.crearUsuario = async (req, res) => {
+    let verificarCorreo = await UsuariosModel.find({ CorreoUser: req.body.CorreoUser })
     try {
         // console.log(verificarCorreo);
 
@@ -29,7 +29,6 @@ exports.crearUsuario = async(req, res) => {
             }
         
 
-       
     } catch (error) {
         console.log('error:', error)
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
@@ -37,7 +36,7 @@ exports.crearUsuario = async(req, res) => {
 }
 
 
-exports.eliminarUsuario = async(req, res) => {
+exports.eliminarUsuario = async (req, res) => {
     try {
         let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
         if (!dataUsuario) {
@@ -52,7 +51,7 @@ exports.eliminarUsuario = async(req, res) => {
     }
 }
 
-exports.actualizarUsuario = async(req, res) => {
+exports.actualizarUsuario = async (req, res) => {
     try {
 
         if (req.params.usuarioId.length == 24) {
@@ -82,7 +81,7 @@ exports.actualizarUsuario = async(req, res) => {
     }
 }
 
-exports.consultarUnUsuario = async(req, res) => {
+exports.consultarUnUsuario = async (req, res) => {
     try {
         let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
         if (!dataUsuario) {
