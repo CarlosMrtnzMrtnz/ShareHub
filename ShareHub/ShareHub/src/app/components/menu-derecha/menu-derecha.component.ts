@@ -37,72 +37,72 @@ export class MenuDerechaComponent {
         },
     ]);
     // ---------------------------------------------------Crear publicacion--------------------------------------------------------------
-    formPublicaciones: FormGroup;
-    private publicacionesServices = inject(SharehubApiService);
-    inputFile!: any;
-    archivo: any;
+    // formPublicaciones: FormGroup;
+    // private publicacionesServices = inject(SharehubApiService);
+    // inputFile!: any;
+    // archivo: any;
 
-    idUsuarioPayload!: string;
+    // idUsuarioPayload!: string;
 
-    constructor(private fb: FormBuilder) {
-        this.formPublicaciones = this.fb.group({
-            textPublicacion: ['', [Validators.required]],
-            imgPublicacion: [''],
-        });
-    }
+    // constructor(private fb: FormBuilder) {
+    //     this.formPublicaciones = this.fb.group({
+    //         textPublicacion: ['', [Validators.required]],
+    //         imgPublicacion: [''],
+    //     });
+    // }
 
-    agregarImg(event: any) {
-        if (event.target.files.length > 0) {
-            const archivosPublicaciones = event.target.files[0];
-            this.formPublicaciones
-                .get('imgPublicacion')!
-                .setValue(archivosPublicaciones);
-        }
-    }
+    // agregarImg(event: any) {
+    //     if (event.target.files.length > 0) {
+    //         const archivosPublicaciones = event.target.files[0];
+    //         this.formPublicaciones
+    //             .get('imgPublicacion')!
+    //             .setValue(archivosPublicaciones);
+    //     }
+    // }
 
-    submitPublicacion() {
-        if (this.formPublicaciones.valid) {
-            const formDataPublicaciones = new FormData();
-            formDataPublicaciones.append(
-                'textPublicacion',
-                this.formPublicaciones.get('textPublicacion')!.value
-            );
-            formDataPublicaciones.append(
-                'imgPublicacion',
-                this.formPublicaciones.get('imgPublicacion')!.value
-            );
-            formDataPublicaciones.append('idUsuario', this.idUsuarioPayload);
+    // submitPublicacion() {
+    //     if (this.formPublicaciones.valid) {
+    //         const formDataPublicaciones = new FormData();
+    //         formDataPublicaciones.append(
+    //             'textPublicacion',
+    //             this.formPublicaciones.get('textPublicacion')!.value
+    //         );
+    //         formDataPublicaciones.append(
+    //             'imgPublicacion',
+    //             this.formPublicaciones.get('imgPublicacion')!.value
+    //         );
+    //         formDataPublicaciones.append('idUsuario', this.idUsuarioPayload);
 
-            this.publicacionesServices
-                .postPublicacion(formDataPublicaciones)
-                .subscribe((respuestaApi) => {
-                    Swal.fire({
-                        title: 'Publicacion creada correctamente!',
-                        icon: 'success',
-                    });
-                    console.log(respuestaApi);
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                });
-        } else {
-            Swal.fire({
-                title: 'Error',
-                text: 'Ingresa los datos requeridos para crear la publicacion',
-                icon: 'error',
-            });
-        }
-    }
+    //         this.publicacionesServices
+    //             .postPublicacion(formDataPublicaciones)
+    //             .subscribe((respuestaApi) => {
+    //                 Swal.fire({
+    //                     title: 'Publicacion creada correctamente!',
+    //                     icon: 'success',
+    //                 });
+    //                 console.log(respuestaApi);
+    //                 setTimeout(() => {
+    //                     location.reload();
+    //                 }, 2000);
+    //             });
+    //     } else {
+    //         Swal.fire({
+    //             title: 'Error',
+    //             text: 'Ingresa los datos requeridos para crear la publicacion',
+    //             icon: 'error',
+    //         });
+    //     }
+    // }
 
-    payloadInfo() {
-        console.log('holi');
+    // payloadInfo() {
+    //     console.log('holi');
 
-        let tokenSession = sessionStorage.getItem('token');
-        this.publicacionesServices
-            .postDesencriptarPayload(tokenSession)
-            .subscribe((respuestaApi: any) => {
-                console.log(respuestaApi);
-                this.idUsuarioPayload = respuestaApi.id;
-            });
-    }
+    //     let tokenSession = sessionStorage.getItem('token');
+    //     this.publicacionesServices
+    //         .postDesencriptarPayload(tokenSession)
+    //         .subscribe((respuestaApi: any) => {
+    //             console.log(respuestaApi);
+    //             this.idUsuarioPayload = respuestaApi.id;
+    //         });
+    // }
 }
