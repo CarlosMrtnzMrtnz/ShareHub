@@ -33,13 +33,13 @@
 </div>
 <!--------------------------------------------- Button trigger modal ----------------------->
 <div class="d-flex justify-content-center">
-    <button type="button" class="rounded-pill boton btn w-50 my-2 mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar</button>
+    <button type="button" class="rounded-pill boton btn w-50 my-2 mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="payloadInfo()">Publicar</button>
 </div>
 
   <!-------------------------------------------------- Modal -------------------------------->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
+      <form class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
         <div class="modal-header">
           <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar</h1>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -48,7 +48,7 @@
             <div class="d-flex flex-column">
                 <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">¿Que quieres decir en esta publicacion?</label>
                 <textarea type="text" name="" id="inputDescGrupo" cols="30" rows="5"
-                    class="inputEditar rounded px-3" formControlName="textoPublicacion"></textarea>
+                    class="inputEditar rounded px-3" formControlName="textPublicacion"></textarea>
             </div>
             <div class="mb-3 d-flex flex-column">
                 <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Subir imagen</label>
@@ -59,6 +59,6 @@
           <button type="button" class="btn  text-dark btn-cancelar fw-semibold" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-guardar fw-semibold">Publicar</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>

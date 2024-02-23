@@ -58,12 +58,28 @@ export class SharehubApiService {
             dataProducto
         );
     }
+
+    postDesencriptarPayload(token:string | null) : any{
+        if(token != null){
+            const headers = new HttpHeaders().set('Authorization', `Beares ${token}`)
+            return this.http.get(this.urlApi + '/token-info', {headers});
+        }else{
+            return {msg: 'sin token'}
+        }
+    }
 // ------------------------------------Servicios Publicacion---------------------
     postPublicacion(dataPublicacion: any) {
-        return this.http.post(`${this.urlApi}/publicacion`, dataPublicacion);
+        return this.http.post(`${this.urlApi}/crear-publicacion/publicacion`, dataPublicacion);
     }
 
+    deletePublicacion(publicacionId:string) {
+        return this.http.delete(`${this.urlApi}/eliminar-publicacion/${publicacionId}`)
+    }
 
+    getPublicaciones() {
+        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        return this.http.get(this.urlApi + '/consultar-publicaciones', {headers});
+    }
 // -------------------------------------Validacion token------------------------
     estaLogueado() :boolean {
         let estado = (sessionStorage.getItem('token')) ? true : false

@@ -10,7 +10,7 @@ exports.crearPulicacion = async (req, res) => {
             return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
         })
 
-        req.body.imgPublicacion = `http://localhost:4000/uploads/${req.body.imagenPublicacion.filename}`
+        req.body.imagenPublicacion = `http://localhost:4000/assets/publicacion/${req.body.imgPublicacion.filename}`
 
 
         let nuevaPublicacion = new publicacionesModel(req.body)
@@ -51,12 +51,11 @@ exports.actualizarPublicacion = async (req, res) => {
                 res.status(404).send({ error: "No se ha encontrado la publicacion" })
                 return
             }
-            const { nombre, imagenUsuario, imagenPublicacion, textoPublicacion } = req.body
+            const { imagenPublicacion, textPublicacion, idUsuario } = req.body
 
-            dataPublicacion.nombre = nombre
-            dataPublicacion.imagenUsuario = imagenUsuario
+            dataPublicacion.idUsuario = idUsuario
             dataPublicacion.imagenPublicacion = imagenPublicacion
-            dataPublicacion.textoPublicacion = textoPublicacion
+            dataPublicacion.textPublicacion = textPublicacion
 
             dataPublicacion = await publicacionesModel.findOneAndUpdate({ _id: req.params.idPublicacion }, dataPublicacion, { new: true })
             res.json(dataPublicacion)
@@ -69,8 +68,15 @@ exports.actualizarPublicacion = async (req, res) => {
     }
 }
 
-
-
+exports.consultarPublicaciones = async (req, res) => {
+    try {
+        let dataPublicacion = await publicacionesModel.find()
+        res.json(dataPublicacion)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador'})
+    }
+}
 
 
 

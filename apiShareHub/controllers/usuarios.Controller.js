@@ -1,4 +1,7 @@
 const UsuariosModel = require('../models/usuariosModel')
+const jwt = require('jsonwebtoken')
+require('dotenv').config({ path: 'config.env' })
+
 exports.consultarUsuarios = async(req, res) => {
     try {
         let dataUsuarios = await UsuariosModel.find()
@@ -22,7 +25,7 @@ exports.crearUsuario = async(req, res) => {
                 res.send(nuevoUsuario)
             }
         } else {
-            res.status(403).json({msg: "ek correo ya existe"})
+            res.status(403).json({msg: "El correo ya existe"})
         }
     
        
@@ -89,5 +92,21 @@ exports.consultarUnUsuario = async(req, res) => {
     } catch (error) {
         console.log('error:', error)
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
+    }
+}
+
+
+exports.desencriptarToken = (req, res) => {
+    try {
+        let token = req.headers.authorization
+        token = token.split(' ')
+        token = token[1]
+        const decoded = jwt.verify(token, process.env.SECRET_KEY_JWT);
+        return res.json(decoded);
+
+    } catch (error) {
+        // Si hay algún error en la verificación o decodificación, manejamos el error
+        console.error('Error al desencriptar el token:', error.message);
+        return null;
     }
 }
