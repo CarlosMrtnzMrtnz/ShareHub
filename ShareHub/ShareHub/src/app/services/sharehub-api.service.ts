@@ -35,13 +35,12 @@ export class SharehubApiService {
         );
     }
 
-    // usuairos ---------------------------------------------------------
-    getUsuario(idusuario: string) {
-        return this.http.get(`${this.urlApi}/consultar-usuario/${idusuario}`);
+    // usuarios ---------------------------------------------------------
+    getUsuario(CorreoUser: string) {
+        return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);
     }
-
-    getCorreo(correo: string) {
-        return this.http.post(`${this.urlApi}/consultar-Correo/`, { correo });
+    getUsuarios() {
+        return this.http.get(`${this.urlApi}/consultar-usuario/`);
     }
 
     postusuario(datausuario: any) {
@@ -52,10 +51,10 @@ export class SharehubApiService {
         return this.http.delete(`${this.urlApi}/eliminar-usuario/${idusuario}`);
     }
 
-    putUsuario(idProducto: string, dataProducto: any) {
+    putUsuario(idusuario: string, dataUser: any) {
         return this.http.put(
-            `${this.urlApi}/actualizar-usuario/${idProducto}`,
-            dataProducto
+            `${this.urlApi}/actualizar-usuario/${idusuario}`,
+            dataUser
         );
     }
 

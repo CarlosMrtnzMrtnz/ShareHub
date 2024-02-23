@@ -1,6 +1,36 @@
+
+
+
+
+const usuariosModel = require('../models/usuariosModel');
 const UsuariosModel = require('../models/usuariosModel')
 const jwt = require('jsonwebtoken')
 require('dotenv').config({ path: 'config.env' })
+
+
+
+exports.crearUsuario = async(req, res) => {
+    try {
+        console.log(req.body);
+            let nuevoUsuario = new UsuariosModel(req.body)
+            await nuevoUsuario.save()
+            res.send(nuevoUsuario)
+            console.log(nuevoUsuario)
+    } catch (error) {
+        console.log('error:', error)
+        res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
+    }
+}
+
+// exports.consultarUnUsuario = async (req, res) => {
+//     try {
+        
+//         verificarUsuario()
+//     } catch (error) {
+//         console.log('error:', error)
+//         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
+//     }
+// }
 
 exports.consultarUsuarios = async (req, res) => {
     try {
@@ -43,7 +73,7 @@ exports.eliminarUsuario = async (req, res) => {
             res.status(404).send({ error: "No se ha encontrado el usuario" })
             return
         }
-        await UsuariosModel.findOneAndDelete({ _id: req.params.usuarioId })
+        await UsuariosModel.findOneAndDelete({ CorreoUser: req.params.usuarioId })
         res.status(200).send({ msg: "Eliminado correctamente" })
     } catch (error) {
         console.log('error:', error)
@@ -55,7 +85,7 @@ exports.actualizarUsuario = async (req, res) => {
     try {
 
         if (req.params.usuarioId.length == 24) {
-            let dataUsuario = await UsuarioModel.findById(req.params.usuarioId)
+            let dataUsuario = await UsuariosModel.findById(req.params.usuarioId)
 
             if (!dataUsuario) {
                 res.status(404).send({ error: "No se ha encontrado el usuario" })

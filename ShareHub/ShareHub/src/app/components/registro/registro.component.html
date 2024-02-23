@@ -18,27 +18,42 @@
             <div class=" d-flex align-items-center justify-content-center">
                 <h2 class="justify-content-center align-items-center">Registro</h2>
             </div>
-
             <div class="cuadro rounded-5 p-3 d-flex flex-column justify-content-center">
                 <form [formGroup]="formregistro" (ngSubmit)="submitForm()">
                     <div class="p-3 ">
-                        <label for="inputPassword" class="TextoShareHubFont visually" >Correo electronico</label>
-                        <input id="inputPassword" type="text" class="form-control rounded-5 mt-3" formControlName="CorreoUser"/>
+                        <label for="inputPassword" class="TextoShareHubFont visually">Correo electronico</label>
+                        <input id="inputPassword" type="text" class="form-control rounded-5 mt-3"
+                            formControlName="CorreoUser" />
+                        @if (formregistro.get('CorreoUser')?.hasError('required')&&
+                        formregistro.get('CorreoUser')?.touched) {
+                        <div> debes escribir algo en el Correo</div>
+                        }
+                        @if (formregistro.get('CorreoUser')?.hasError('pattern')&&
+                        formregistro.get('CorreoUser')?.touched) {
+                        <div>No cumple los requisitos para ser un correo valido</div>
+                        }
+
                     </div>
+
                     <div class="p-3 ">
-                        <label for="inputPassword1" class="TextoShareHubFont visually rounded-5" >Contraseña</label>
-                        <input id="inputPassword1" type="password" class="form-control rounded-5 mt-3" formControlName="clave" />
-                    </div>
-                    <div class="p-3 ">
-                        <label for="inputPassword2" class="TextoShareHubFont visually rounded-5" >Nombre de usuario
+                        <label for="inputPassword2" class="TextoShareHubFont visually rounded-5">nombre de usuario
                         </label>
-                        <input id="inputPassword2" type="text" class="form-control rounded-5 mt-3"formControlName="nombre" />
+                        <input id="inputPassword2" type="text" class="form-control rounded-5 mt-3"
+                            formControlName="nombre" />
+                        @if (formregistro.get('nombre')?.hasError('required')&& formregistro.get('nombre')?.touched) {
+                        <div>Debes tener un nombre de usuario</div>}
+                        @if (formregistro.get('nombre')?.hasError('pattern') && formregistro.get ('nombre')?.touched) {
+                        <div> Eso no es un nombre pendejo</div>}
+                    </div>
+                    <div class="p-3 ">
+                        <label for="inputPassword1" class="TextoShareHubFont visually rounded-5">Contraseña</label>
+                        <input id="inputPassword1" type="password" class="form-control rounded-5 mt-3"
+                            formControlName="clave" />
                     </div>
 
                     <div class="p-3 d-flex flex-column justify-content-center ">
-                        <button type="submit"
-                            class=" text-black my-3  boton btn  rounded-5">Registrame
-                        </button>
+                        <button type="submit" class=" text-black my-3  boton btn  rounded-5">registrame
+                            bebe</button>
                     </div>
                 </form>
 
