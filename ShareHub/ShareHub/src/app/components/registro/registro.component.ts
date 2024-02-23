@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SharehubApiService } from '../../services/sharehub-api.service';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
     selector: 'app-registro',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
     templateUrl: './registro.component.html',
     styleUrl: './registro.component.css'
 })
@@ -38,16 +38,25 @@ export class RegistroComponent {
 
 
     submitForm() {
-        console.log("lachupa");
+        console.log("registro");
 
         this.registroService.postusuario(this.formregistro.value).subscribe(respuestaAPI => {
             Swal.fire({
-                title: "Producto agregado correctamente! 😁",
+                title: "Usuario creado correctamente!",
                 icon: "success"
             });
             console.log(respuestaAPI);
+            setTimeout(() => {
+                this.router.navigate(['/'])
 
-        })
+            }, 2000);
+
+        }, error => {
+            Swal.fire({
+                title: "El correo electronico ya existe!",
+                icon: "error"
+            });
+        } )
 
     }
 }

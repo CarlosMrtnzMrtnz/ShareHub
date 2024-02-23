@@ -23,13 +23,15 @@ router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario
 router.post('/crear-usuario', usuarioController.crearUsuario)
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
 router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
+router.get('/token-info', usuarioController.desencriptarToken)
+
 
 
 // Rutas publiaciones
 
 router.post('/ingreso', sessionController.generarToken)
 // -----------------------------rutas publicaciones---------------------------------------------------
-router.post('/publicacion', mdlMulter.array("publicacion"), publicacionController.crearPulicacion);
-router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
-
+router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
+router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
+router.get('/consultar-publicaciones', publicacionController.consultarPublicaciones)
 module.exports = router

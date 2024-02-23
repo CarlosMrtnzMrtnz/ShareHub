@@ -11,7 +11,7 @@ exports.verificarToken = (req, res, next) =>{
     }
     jwt.verify(token[1], process.env.SECRET_KEY_JWT, (err, decoded) =>{
         if(err) {
-            return res.status(403).send({error: "token de sefuridad invalido"})
+            return res.status(403).send({error: "token de seguridad invalido"})
         }
         req.usuario = decoded
         next()

@@ -4,7 +4,7 @@ import { GruposComponent } from "../app/components/grupos/grupos.component";
 import { ListadoGruposComponent } from "../app/components/listado-grupos/listado-grupos.component";
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
-import { PerfilComponent } from './components/perfil/perfil.component'
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegistroGruposComponent } from "../app/components/registro-grupos/registro-grupos.component";
 import { Erro404Component } from './components/erro404/erro404.component';
 import { autenticacionGuardGuard } from './guards/autenticacion.guard.guard';

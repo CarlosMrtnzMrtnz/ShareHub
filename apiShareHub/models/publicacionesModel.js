@@ -1,11 +1,7 @@
 const mongoose = require('mongoose')
 
 const publicacionesSchema = mongoose.Schema({
-    nombre: {
-        type: String,
-        require: true
-    },
-    imagenUsuario: {
+    idUsuario: {
         type: String,
         require: true
     },
@@ -13,7 +9,7 @@ const publicacionesSchema = mongoose.Schema({
         type: String,
         require: false
     },
-    textoPublicacion: {
+    textPublicacion: {
         type: String,
         require: true
     }

@@ -1,10 +1,11 @@
 <main class="container">
-@for (item of publicaciones(); track item) {
+@for (item of publicacionesDataUsuario; track item) {
 <app-hijo-inicio
-    [rutaImagenUsuario]="item.imagenUsuario"
-    [rutaNombre]="item.nombre"
+    [rutaImagenUsuario]="item.imgUsuario"
+    [rutaNombre]="item.nombreUsuario"
     [rutaImagen]="item.imagenPublicacion"
-    [rutaComentario]="item.textoPublicacion"
+    [rutaComentario]="item.textPublicacion"
+    [rutaId]="item._id"
 ></app-hijo-inicio>
 }
 </main>
