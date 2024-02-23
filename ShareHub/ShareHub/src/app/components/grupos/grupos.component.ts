@@ -21,7 +21,7 @@ import Swal from 'sweetalert2';
 })
 export class GruposComponent {
     formGrupos: FormGroup;
-    // private GruposServices = inject(SharehubApiService);
+    private GruposServices = inject(SharehubApiService);
     listadoDeGrupos = signal<any>([]);
     idGrupoUrl: null | string;
 
@@ -30,16 +30,24 @@ export class GruposComponent {
     imgGrupo: string = '';
     _id: string = '';
 
-    inputHiddenID = new FormControl()
+    inputHiddenID = new FormControl();
 
-    constructor(private fb: FormBuilder, private rutaId: ActivatedRoute, private GruposServices: SharehubApiService) {
+    constructor(private fb: FormBuilder, private rutaId: ActivatedRoute) {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
             imgGrupo: [''],
+            idHidden: [''],
         });
 
         this.idGrupoUrl = this.rutaId.snapshot.paramMap.get('idGrupo');
+    }
+
+    agregarImagenArr(event: any) {
+        if (event.target.files.length > 0) {
+            const archivoGrupo = event.target.files[0];
+            this.formGrupos.get('imgGrupo')!.setValue(archivoGrupo);
+        }
     }
 
     ngOnInit(): void {
@@ -59,21 +67,36 @@ export class GruposComponent {
         console.log('Se inicio el componente');
     }
 
+
     submitFormEditar() {
-        console.log('Entro en actualizar');
-        this.GruposServices.putGrupo(
-            this.inputHiddenID.value,
-            this.formGrupos.value
-        ).subscribe((respuestaAPI) => {
-            Swal.fire({
-                title: 'Grupo actualizado correctamente!',
-                icon: 'success',
+        if (this.formGrupos.valid) {
+            const formData:any = new FormData();
+            formData.append('nombreGrupo', this.formGrupos.get('nombreGrupo')!.value);
+            formData.append('descripcionGrupo', this.formGrupos.get('descripcionGrupo')!.value);
+            formData.append('idHidden', this.formGrupos.get('idHidden')!.value);
+
+            const imgGrupoFile = this.formGrupos.get('imgGrupo')!.value;
+            if (imgGrupoFile != "") {
+                formData.append('imgGrupo', imgGrupoFile);
+            }else{
+                formData.append('imgGrupo', "");
+            }
+
+
+            console.log('Entro en actualizar');
+            this.GruposServices.putGrupo(this.formGrupos.value.idHidden, formData).subscribe((respuestaAPI) => {
+                Swal.fire({
+                    title: 'Grupo actualizado correctamente!',
+                    icon: 'success',
+                });
             });
-        });
-        // this.consultarProductos()
-        // setTimeout(() => {
-        //     location.reload();
-        // }, 2000);
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, ingresa los datos requeridos para actualizar el grupo',
+                icon: 'error',
+            });
+        }
     }
 
     actualizarGrupo(grupoId: string) {
@@ -93,7 +116,8 @@ export class GruposComponent {
                 this.formGrupos.setValue({
                     nombreGrupo: dataGrupo.nombreGrupo,
                     descripcionGrupo: dataGrupo.descripcionGrupo,
-                    imgGrupo: dataGrupo.imgGrupo,
+                    imgGrupo: '',
+                    idHidden: dataGrupo._id,
                 });
             },
             error: (err) => {

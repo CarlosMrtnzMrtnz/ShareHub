@@ -30,7 +30,7 @@ export class SharehubApiService {
 
     putGrupo(grupoId: string, dataGrupo: any) {
         return this.http.put(
-            `${this.urlApi}/actualizar-grupo/${grupoId}`,
+            `${this.urlApi}/actualizar-grupo/${grupoId}/grupo`,
             dataGrupo
         );
     }
