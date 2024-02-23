@@ -12,7 +12,7 @@ const mdlMulter = require("../middleware/multer")
 router.get('/consultar-grupos', gruposController.consultarGrupos);
 router.get('/consultar-grupo/:grupoId', gruposController.consultarUnGrupo);
 router.post('/crear-grupo/:directorio', mdlMulter.array("imgGrupo"),  gruposController.crearGrupo)
-router.put('/actualizar-grupo/:grupoId', gruposController.actualizarGrupo)
+router.put('/actualizar-grupo/:grupoId/:directorio',mdlMulter.array("imgGrupo"), gruposController.actualizarGrupo)
 router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
