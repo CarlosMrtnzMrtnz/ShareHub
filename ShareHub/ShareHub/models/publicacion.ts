@@ -3,4 +3,5 @@ export interface Ipublicaciones {
     imagenUsuario: string,
     imagenPublicacion: string,
     textPublicacion: string,
+    comentario: string
 }

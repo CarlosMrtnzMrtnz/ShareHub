@@ -110,7 +110,7 @@ export class AppComponent {
 
     constructor(private fb: FormBuilder) {
         this.formPublicaciones = this.fb.group({
-            textPublicacion: ['', [Validators.required]],
+            textPublicacion: [' ', [Validators.required]],
             imgPublicacion: [''],
         });
     }

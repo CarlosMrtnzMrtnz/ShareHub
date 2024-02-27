@@ -11,7 +11,11 @@ const publicacionesSchema = mongoose.Schema({
     },
     textPublicacion: {
         type: String,
-        require: true
+        require: false
+    },
+    comentario:{
+        type: String,
+        require: false
     }
 }, {
     timestamps: true,

@@ -24,10 +24,11 @@ export class InicioComponent {
 
     ngOnInit() {
 
+
         this.publicacionesServices.getPublicaciones().subscribe({
             next: (publicaciones2) => {
                 this.publicaciones.set(publicaciones2)
-                console.log(this.publicaciones());
+                // console.log(this.publicaciones());
 
                 this.publicaciones().forEach((publicacion: any) => {
                     if (publicacion.idUsuario != null) {
@@ -45,7 +46,7 @@ export class InicioComponent {
                         })
                         this.publicacionesDataUsuario.push(publicacion)
                         this.publicacionesDataUsuario.reverse()
-                        console.log(publicacion)
+                        // console.log(publicacion)
                     }
                 });
 

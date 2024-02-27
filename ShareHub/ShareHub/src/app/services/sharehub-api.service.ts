@@ -79,6 +79,12 @@ export class SharehubApiService {
         const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
         return this.http.get(this.urlApi + '/consultar-publicaciones', {headers});
     }
+    getUnaPublicacion(publicacionId: string) {
+        return this.http.get(`${this.urlApi}/consultar-publicacion/${publicacionId}`)
+    }
+    putPublicacion(publicacionId: string, dataPublicacion:any) {
+        return this.http.put(`${this.urlApi}/actualizar-publicacion/${publicacionId}/publicacion`, dataPublicacion)
+    }
 // -------------------------------------Validacion token------------------------
     estaLogueado() :boolean {
         let estado = (sessionStorage.getItem('token')) ? true : false

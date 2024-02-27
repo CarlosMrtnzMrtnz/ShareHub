@@ -29,9 +29,11 @@ router.get('/token-info', usuarioController.desencriptarToken)
 
 // Rutas publiaciones
 
-router.post('/ingreso', sessionController.generarToken)
+router.post('/ingreso', sessionController.generarToken) 
 // -----------------------------rutas publicaciones---------------------------------------------------
-router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
-router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
 router.get('/consultar-publicaciones', publicacionController.consultarPublicaciones)
+router.get('/consultar-publicacion/:idPublicacion', publicacionController.consultarUnaPublicacion)
+router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
+router.put('/actualizar-publicacion/:idPublicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.actualizarPublicacion)
+router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
 module.exports = router
