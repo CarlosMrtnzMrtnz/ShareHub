@@ -1,18 +1,47 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { SharehubApiService } from '../../services/sharehub-api.service';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+    selector: 'app-navbar',
+    standalone: true,
+    imports: [CommonModule, RouterLink],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-    clearSessionStorage(){
+    private UsuarioServices = inject(SharehubApiService);
+    idUsuarioPayload!: string;
+    constructor(private router: Router) {}
+    clearSessionStorage() {
         sessionStorage.clear();
-        location.reload()
+        location.reload();
     }
 
+
+    ngOnInit() {
+        if (sessionStorage.getItem('token') == null) {
+            this.router.navigate(['/']);
+        }
+
+        let tokenSession = sessionStorage.getItem('token');
+        this.UsuarioServices.postDesencriptarPayload(tokenSession).subscribe(
+            (respuestaApi: any) => {
+                console.log(respuestaApi.id);
+                this.idUsuarioPayload = respuestaApi.id;
+                this.UsuarioServices.getUsuario(respuestaApi.id).subscribe({
+                    next: (respuestaApi: any) => {
+                        console.log(respuestaApi);
+                        let imagenUsuario = respuestaApi.imguser
+                        console.log(imagenUsuario);
+
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
+            }
+        );
+    }
 }

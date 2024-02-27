@@ -11,23 +11,27 @@ exports.consultarGrupos = async (req, res) => {
 
 exports.crearGrupo = async (req, res) => {
     try {
+        let imagenGrupo = req.files
 
-        const imagenGrupo = req.files
+        if(imagenGrupo == '' || imagenGrupo.length == 0){
+            imagenGrupo = 'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'
+        }else{
+            console.log("******************************************************************");
+            console.log(req.body);
+            console.log("******************************************************************");
+            console.log("******************************************************************");
+            console.log(req.files);
+            console.log("******************************************************************");
+            let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
+            req.body.imgGrupo = imagenGrupo.find((archivo) => {
+                return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
+            })
+    
+    
+            req.body.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
+        }
 
-        console.log("******************************************************************");
-        console.log(req.body);
-        console.log("******************************************************************");
-        console.log("******************************************************************");
-        console.log(req.files);
-        console.log("******************************************************************");
-        let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
-        req.body.imgGrupo = imagenGrupo.find((archivo) => {
-            return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
-        })
-
-
-        req.body.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
-
+        
         let nuevoGrupo = new gruposModel(req.body)
         await nuevoGrupo.save()
         res.send(nuevoGrupo)

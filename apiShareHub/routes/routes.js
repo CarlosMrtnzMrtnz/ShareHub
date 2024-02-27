@@ -18,7 +18,7 @@ router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
 // ?Rutas Uauario
-router.get('/consultar-usuario',mdJWT.verificarToken, usuarioController.consultarUsuarios);
+router.get('/consultar-usuarios',mdJWT.verificarToken, usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)

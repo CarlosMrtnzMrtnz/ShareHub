@@ -23,6 +23,7 @@ export class GruposComponent {
     formGrupos: FormGroup;
     private GruposServices = inject(SharehubApiService);
     listadoDeGrupos = signal<any>([]);
+    listaUsuarios:any= [];
     idGrupoUrl: null | string;
 
     nombreGrupo: string = '';
@@ -124,5 +125,37 @@ export class GruposComponent {
                 console.log(err);
             },
         });
+    }
+
+    // Agregar miembros ---------------------------
+    obtenerUsuarios(){
+        this.GruposServices.getUsuarios().subscribe({
+            next: (usuarios : any) =>{
+                console.log(usuarios);
+                this.listaUsuarios = usuarios;
+            },
+            error: (err) =>{
+                console.log(err)
+            }
+        })
+    }
+
+    agregarMiembro(){
+        // this.GruposServices.postMiembroGrupo(this.idGrupoUrl, this.inputHiddenID.value).subscribe({
+        //     next: (respuestaAPI) => {
+        //         Swal.fire({
+        //             title: 'Miembro agregado correctamente!',
+        //             icon:'success',
+        //         });
+        //         this.obtenerUsuarios();
+        //     },
+        //     error: (err) => {
+        //         console.log(err);
+        //     },
+        // });
+    }
+
+    obtenerMiembrosEliminar(){
+
     }
 }

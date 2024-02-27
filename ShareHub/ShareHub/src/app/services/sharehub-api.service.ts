@@ -13,7 +13,7 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
@@ -36,6 +36,10 @@ export class SharehubApiService {
         );
     }
 
+    postMiembroGrupo(idGrupoUrl: string | null, value: any) {
+        throw new Error('Method not implemented.');
+    }
+
     // usuarios ---------------------------------------------------------
     getUsuario(CorreoUser: string) {
 
@@ -43,7 +47,8 @@ export class SharehubApiService {
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
     getUsuarios() {
-        return this.http.get(`${this.urlApi}/consultar-usuario/`);
+        const headers = new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('token')}`)
+        return this.http.get(`${this.urlApi}/consultar-usuarios`, {headers});
     }
 
     postusuario(datausuario: any) {
