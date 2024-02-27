@@ -12,7 +12,7 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
@@ -33,6 +33,10 @@ export class SharehubApiService {
             `${this.urlApi}/actualizar-grupo/${grupoId}/grupo`,
             dataGrupo
         );
+    }
+
+    postMiembroGrupo(idGrupoUrl: string | null, value: any) {
+        throw new Error('Method not implemented.');
     }
 
     // usuarios ---------------------------------------------------------

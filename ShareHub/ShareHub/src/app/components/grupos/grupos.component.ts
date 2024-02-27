@@ -132,7 +132,6 @@ export class GruposComponent {
         this.GruposServices.getUsuarios().subscribe({
             next: (usuarios : any) =>{
                 console.log(usuarios);
-
                 this.listaUsuarios = usuarios;
             },
             error: (err) =>{
@@ -141,4 +140,22 @@ export class GruposComponent {
         })
     }
 
+    agregarMiembro(){
+        // this.GruposServices.postMiembroGrupo(this.idGrupoUrl, this.inputHiddenID.value).subscribe({
+        //     next: (respuestaAPI) => {
+        //         Swal.fire({
+        //             title: 'Miembro agregado correctamente!',
+        //             icon:'success',
+        //         });
+        //         this.obtenerUsuarios();
+        //     },
+        //     error: (err) => {
+        //         console.log(err);
+        //     },
+        // });
+    }
+
+    obtenerMiembrosEliminar(){
+
+    }
 }

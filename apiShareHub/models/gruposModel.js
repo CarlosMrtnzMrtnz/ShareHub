@@ -12,6 +12,10 @@ const gruposModel = mongoose.Schema({
     imgGrupo:{
         type: String,
         required: false
+    },
+    miembros:{
+        type: Array,
+        required: true
     }
 },
 {
