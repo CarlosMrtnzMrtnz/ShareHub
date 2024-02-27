@@ -11,14 +11,11 @@ import { SharehubApiService } from '../../services/sharehub-api.service';
     styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-    private UsuarioServices = inject(SharehubApiService);
-    idUsuarioPayload!: string;
-    constructor(private router: Router) {}
-    clearSessionStorage() {
-        sessionStorage.clear();
-        location.reload();
-    }
 
+    private Services = inject(SharehubApiService);
+    idUsuarioPayload!: string;
+    URLProyecto = "//" + location.hostname + ":" + location.port
+    constructor(private router: Router) { }
 
     ngOnInit() {
         if (sessionStorage.getItem('token') == null) {
@@ -26,11 +23,11 @@ export class NavbarComponent {
         }
 
         let tokenSession = sessionStorage.getItem('token');
-        this.UsuarioServices.postDesencriptarPayload(tokenSession).subscribe(
+        this.Services.postDesencriptarPayload(tokenSession).subscribe(
             (respuestaApi: any) => {
                 console.log(respuestaApi.id);
                 this.idUsuarioPayload = respuestaApi.id;
-                this.UsuarioServices.getUsuario(respuestaApi.id).subscribe({
+                this.Services.getUsuario(respuestaApi.id).subscribe({
                     next: (respuestaApi: any) => {
                         console.log(respuestaApi);
                         let imagenUsuario = respuestaApi.imguser
@@ -43,5 +40,19 @@ export class NavbarComponent {
                 });
             }
         );
+
+        this.Services
+            .postDesencriptarPayload(tokenSession)
+            .subscribe((respuestaApi: any) => {
+                console.log(respuestaApi);
+                this.idUsuarioPayload = respuestaApi.id;
+                // this.router.navigate([`/mi-perfil/${this.idUsuarioPayload}`])
+            });
     }
+
+    clearSessionStorage() {
+        sessionStorage.clear();
+        location.reload();
+    }
+
 }
