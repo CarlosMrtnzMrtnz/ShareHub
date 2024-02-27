@@ -3,6 +3,11 @@
     height: 200px;
 }
 
+.opacidadNO {
+    opacity: 1 !important;
+}
+
+
 .grupos-page-bg{
     background-color: var(--morado-oscuro-principal);
 }
@@ -17,7 +22,7 @@
 
 .linea{
     height: 1px;
-    width: 30%;
+    width: 80%;
     background-color: var(--morado-claro);
 }
 

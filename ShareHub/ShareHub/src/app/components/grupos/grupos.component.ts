@@ -23,6 +23,7 @@ export class GruposComponent {
     formGrupos: FormGroup;
     private GruposServices = inject(SharehubApiService);
     listadoDeGrupos = signal<any>([]);
+    listaUsuarios:any= [];
     idGrupoUrl: null | string;
 
     nombreGrupo: string = '';
@@ -125,4 +126,19 @@ export class GruposComponent {
             },
         });
     }
+
+    // Agregar miembros ---------------------------
+    obtenerUsuarios(){
+        this.GruposServices.getUsuarios().subscribe({
+            next: (usuarios : any) =>{
+                console.log(usuarios);
+
+                this.listaUsuarios = usuarios;
+            },
+            error: (err) =>{
+                console.log(err)
+            }
+        })
+    }
+
 }

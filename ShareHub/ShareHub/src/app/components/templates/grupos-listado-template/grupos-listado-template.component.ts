@@ -20,13 +20,13 @@ export class GruposListadoTemplateComponent {
     @Input() descripcionGrupo!: string;
 
     @Output() dataGrupoTemplate = new EventEmitter();
-    @Output() grupoSeleccionado = new EventEmitter<{ idGrupo: string, descripcionGrupo: string, nombreGrupo: string, imgGrupo: string }>();
+    // @Output() grupoSeleccionado = new EventEmitter<{ idGrupo: string, descripcionGrupo: string, nombreGrupo: string, imgGrupo: string }>();
 
 
-    onGrupoSeleccionado() {
-        // Emit el evento con los datos del grupo
-        this.grupoSeleccionado.emit({ idGrupo:this.idGrupo, descripcionGrupo: this.descripcionGrupo, nombreGrupo: this.nombreGrupo, imgGrupo: this.imgGrupo });
-    }
+    // onGrupoSeleccionado() {
+    //     // Emit el evento con los datos del grupo
+    //     this.grupoSeleccionado.emit({ idGrupo:this.idGrupo, descripcionGrupo: this.descripcionGrupo, nombreGrupo: this.nombreGrupo, imgGrupo: this.imgGrupo });
+    // }
 
     eliminarGrupo(idGrupo: string ) {
         Swal.fire({
@@ -68,8 +68,8 @@ export class GruposListadoTemplateComponent {
         });
     }
 
-    consultarUnGrupo(idGrupo: String){
+    // consultarUnGrupo(idGrupo: String){
 
 
-    }
+    // }
 }

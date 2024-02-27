@@ -46,7 +46,8 @@
             </div>
             <!-- Button trigger modal Agregar Miembros -->
             <button class="btn rounded-pill fw-semibold py-0 px-2 color-btn me-2" data-bs-toggle="modal"
-                data-bs-target="#modalAgregarMiembros"><i class="fa-solid fa-user-plus"></i></button>
+                data-bs-target="#modalAgregarMiembros" (click)="obtenerUsuarios()"><i
+                    class="fa-solid fa-user-plus"></i></button>
             <!-- Modal Editar Agregar Miembros -->
             <div class="modal fade" id="modalAgregarMiembros" tabindex="-1" aria-labelledby="agregarMiembrosModalLabel"
                 aria-hidden="true">
@@ -60,7 +61,20 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div></div>
+                            <!--lista de usuarios -->
+                            <div class="d-flex flex-column">
+                                @for(usuario of listaUsuarios; track usuario._id){
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img [src]="usuario.imguser" alt="" class="rounded-circle">
+                                        <div class="text-white">{{ usuario.nombre }}</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-warning rounded-pill w-100 px-3">+</button>
+                                    </div>
+                                </div>
+                                }
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-cancelar text-dark fw-semibold"
@@ -124,6 +138,9 @@
                                         grupo</label>
                                     <input type="text" id="inputNombreGrupo"
                                         class="rounded-pill inputEditar border-0 px-3" formControlName="nombreGrupo">
+                                    <div class="text-danger fw-bold opacity-0"
+                                        [class.opacidadNO]="formGrupos.get('nombreGrupo')?.hasError('required') && formGrupos.get('nombreGrupo')?.touched">
+                                        El nombre del grupo es obligatorio</div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">Descripcion
@@ -148,15 +165,14 @@
     </div>
     <div class="d-flex justify-content-center flex-column text-center">
         <div class="d-flex justify-content-center mb-1">
-            <div class="linea"></div>
+            <div class="linea mb-2"></div>
         </div>
         <div class="d-flex justify-content-around mb-2 TextoShareHubFont">
             <button class="btn text-color">Publicaciones</button>
-            <button class="btn text-color">Fotos</button>
+            <button class="btn text-color me-5">Fotos</button>
             <button class="btn text-color">Miembros</button>
         </div>
     </div>
     <div>
-
     </div>
 </section>
