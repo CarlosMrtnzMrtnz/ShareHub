@@ -58,6 +58,11 @@ export class RegistroComponent {
                 title: "Usuario creado correctamente!",
                 icon: "success"
             });
+            let dataApi: any = respuestaAPI
+            sessionStorage.setItem('token', dataApi.token)
+            location.reload()
+
+
             console.log(respuestaAPI);
             setTimeout(() => {
                 this.router.navigate(['/'])
@@ -71,4 +76,5 @@ export class RegistroComponent {
                 icon: "error"
             });
         })
-    }}
+    }
+}

@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +13,7 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
@@ -37,7 +38,9 @@ export class SharehubApiService {
 
     // usuarios ---------------------------------------------------------
     getUsuario(CorreoUser: string) {
-        return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);
+
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
+        return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
     getUsuarios() {
         return this.http.get(`${this.urlApi}/consultar-usuario/`);
