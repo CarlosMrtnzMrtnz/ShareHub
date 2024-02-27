@@ -11,19 +11,21 @@
     <div class="col-lg-3 contenedorDer">
         <app-menu-derecha></app-menu-derecha>
     </div>
-<div class="position-fixed sticky-bottom me-5">
-          <!--------------------------------------------- Button trigger modal ----------------------->
-          <div class="d-flex justify-content-end  ">
+    <div class="position-fixed sticky-bottom me-5">
+        <!--------------------------------------------- Button trigger modal ----------------------->
+        <div class="d-flex justify-content-end  ">
             <button type="button" class="rounded-circle boton btn p-4  my-2 mx-5 " data-bs-toggle="modal"
-                data-bs-target="#exampleModal"><img class="w" src="../../../assets/img/feather_8382000.png" alt=""></button>
+                data-bs-target="#exampleModal"><img class="w" src="../../../assets/img/feather_8382000.png"
+                    alt=""></button>
         </div>
     </div>
-        <!-------------------------------------------------- Modal -------------------------------->
+    <!-------------------------------------------------- Modal -------------------------------->
     <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
                 <div class="modal-header">
-                    <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar</h1>
+                    <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar
+                    </h1>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -52,6 +54,6 @@
 
 </div>
 }@else {
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 
 }

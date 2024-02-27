@@ -2,9 +2,9 @@
     <div class="cuadro card  m-5 col tamaño_caja">
 
         <div class="card-body  ">
-            <div class="d-flex m-2" *ngFor="let imagen of miladitoderecho()">
-                <img class="esta" [src]="imagen.ruta1" alt="">
-                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{imagen.nombre}}</p>
+            <div class="d-flex m-2" >
+                <img class="esta" [src]=imguser alt="">
+                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{nombre}}</p>
                 <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button>
             </div>
 
@@ -12,19 +12,7 @@
 
 
     </div>
-    <div class="cuadro card  m-5 col  ">
 
-        <div class="card-body  ">
-            <div class="d-flex m-2" *ngFor="let imagen of miladitoderecho()">
-                <img class="esta" [src]="imagen.ruta1" alt="">
-                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{imagen.nombre}}</p>
-                <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button>
-            </div>
-
-        </div>
-
-
-    </div>
 
 
 </section>
