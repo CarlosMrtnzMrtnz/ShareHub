@@ -60,12 +60,13 @@ export class RegistroComponent {
             });
             let dataApi: any = respuestaAPI
             sessionStorage.setItem('token', dataApi.token)
-            location.reload()
+
 
 
             console.log(respuestaAPI);
             setTimeout(() => {
-                this.router.navigate(['/'])
+                location.reload()
+                this.router.navigate(['/inicio'])
 
             }, 2000);
 

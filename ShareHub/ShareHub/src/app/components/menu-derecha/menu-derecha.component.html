@@ -2,16 +2,27 @@
     <div class="cuadro card  m-5 col tamaño_caja">
 
         <div class="card-body  ">
-            <div class="d-flex m-2" >
-                <img class="esta" [src]=imguser alt="">
-                <p class=" ms-2 text-white m-0 d-grid align-items-center fst-italic">{{nombre}}</p>
-                <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button>
+
+
+
+
+            <div class="d-flex m-2 flex-column">
+                @for(usuario of usuariosfiltre; track usuario._id){
+                    <div class="d-flex my-3 ">
+                        <img class="esta " [src]="usuario.imguser" alt="">
+                        <p class=" ms-2 text-white m-0   fst-italic">{{usuario.nombre}}</p>
+                        <button class=" boton ms-auto rounded-pill px-4 fs-3 py-0 "> + </button></div>
+                }
             </div>
 
+
+
+
+
         </div>
-
-
     </div>
+
+
 
     <!-------------------------------------------------- Modal -------------------------------->
     <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
