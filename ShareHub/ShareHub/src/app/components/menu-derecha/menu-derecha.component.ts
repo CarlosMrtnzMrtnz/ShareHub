@@ -13,7 +13,7 @@ import { SharehubApiService } from '../../services/sharehub-api.service';
 })
 export class MenuDerechaComponent {
     userdata = signal<any>([])
-    private productosServices = inject(SharehubApiService)
+    private seviceUser = inject(SharehubApiService)
     @Input() nombre!: string
     @Input() imguser!: string
 
@@ -31,10 +31,11 @@ export class MenuDerechaComponent {
     //         formDataPublicaciones.append('idUsuario', this.idUsuarioPayload);
 
     ngOnInit(){
-        this.productosServices.getUsuarios().subscribe({
+        this.seviceUser.getUsuarios().subscribe({
             next: (user) => {
                 this.userdata.set(user)
                 console.log(this.userdata());
+
 
             },
             error: (err) => {
