@@ -153,7 +153,7 @@ body {
   }
 
   .BookmarkButton input:checked ~ .checkmarkBookmarkButton path {
-    fill: #4313f0; /* Cambio de color */
+    fill: var(--amarillo-principal); /* Cambio de color */
     stroke-width: 0;
   }
 

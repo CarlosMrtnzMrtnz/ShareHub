@@ -6,7 +6,7 @@
             <div class="TextoShareHubFont d-grid align-items-center text-white ms-3"><h4 class="m-0 TextoShareHubFont fw-bold">{{rutaNombre}}</h4></div>
         </div>
         <div class="dropdown">
-            <button class="btn  text-white" type="button" (click)="activarModal(rutaId)" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+            <button class="btn  text-white" type="button"  data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
                 <ul class="dropdown-menu" >
                     <li><a class="dropdown-item" (click)="actualizarPublicacionX(rutaId)" data-bs-toggle="modal"
                       [attr.data-bs-target]="'#exampleModalX'+rutaId" (click)="payloadInfo()" type="button" >Editar</a></li>
