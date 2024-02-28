@@ -29,15 +29,11 @@ export class SharehubApiService {
         return this.http.delete(`${this.urlApi}/eliminar-grupo/${grupoId}`);
     }
 
-    putGrupo(grupoId: string, dataGrupo: any) {
+    putGrupo(grupoId: string | null, dataGrupo: any) {
         return this.http.put(
             `${this.urlApi}/actualizar-grupo/${grupoId}/grupo`,
             dataGrupo
         );
-    }
-
-    postMiembroGrupo(idGrupoUrl: string | null, value: any) {
-        throw new Error('Method not implemented.');
     }
 
     // usuarios ---------------------------------------------------------
