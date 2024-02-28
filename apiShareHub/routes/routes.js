@@ -21,7 +21,7 @@ router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 router.get('/consultar-usuarios',mdJWT.verificarToken, usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)
-router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
+router.put('/actualizar-usuario/:usuarioId/:directorio', mdlMulter.array("imguser"), usuarioController.actualizarUsuario)
 router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
 router.get('/token-info', usuarioController.desencriptarToken)
 

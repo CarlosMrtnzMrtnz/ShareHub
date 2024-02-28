@@ -59,7 +59,7 @@ export class SharehubApiService {
 
     putUsuario(idusuario: string, dataUser: any) {
         return this.http.put(
-            `${this.urlApi}/actualizar-usuario/${idusuario}`,
+            `${this.urlApi}/actualizar-usuario/${idusuario}/perfil`,
             dataUser
         );
     }
