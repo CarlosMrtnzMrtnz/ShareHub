@@ -11,25 +11,29 @@ const mdlMulter = require("../middleware/multer")
 
 router.get('/consultar-grupos', gruposController.consultarGrupos);
 router.get('/consultar-grupo/:grupoId', gruposController.consultarUnGrupo);
-router.post('/crear-grupo/:directorio', mdlMulter.array("pepe"),  gruposController.crearGrupo)
-router.put('/actualizar-grupo/:grupoId', gruposController.actualizarGrupo)
+router.post('/crear-grupo/:directorio', mdlMulter.array("imgGrupo"),  gruposController.crearGrupo)
+router.put('/actualizar-grupo/:grupoId/:directorio',mdlMulter.array("imgGrupo"), gruposController.actualizarGrupo)
 router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
 
 
 
 // ?Rutas Uauario
-router.get('/consultar-usuario',mdJWT.verificarToken, usuarioController.consultarUsuarios);
+router.get('/consultar-usuarios',mdJWT.verificarToken, usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)
 router.put('/actualizar-usuario/:usuarioId', usuarioController.actualizarUsuario)
 router.delete('/eliminar-usuario/:usuarioId', usuarioController.eliminarUsuario)
+router.get('/token-info', usuarioController.desencriptarToken)
+
 
 
 // Rutas publiaciones
 
-router.post('/ingreso', sessionController.generarToken)
+router.post('/ingreso', sessionController.generarToken) 
 // -----------------------------rutas publicaciones---------------------------------------------------
-router.post('/publicacion', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
-router.delete('/eliminar-publicacion/:idProducto', publicacionController.eliminarPublicacion)
-
+router.get('/consultar-publicaciones', publicacionController.consultarPublicaciones)
+router.get('/consultar-publicacion/:idPublicacion', publicacionController.consultarUnaPublicacion)
+router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
+router.put('/actualizar-publicacion/:idPublicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.actualizarPublicacion)
+router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
 module.exports = router

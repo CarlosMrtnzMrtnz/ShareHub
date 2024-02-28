@@ -15,14 +15,14 @@
         <!--------------------------------------------- Button trigger modal ----------------------->
         <div class="d-flex justify-content-end  ">
             <button type="button" class="rounded-circle boton btn p-4  my-2 mx-5 " data-bs-toggle="modal"
-                data-bs-target="#exampleModal"><img class="w" src="../../../assets/img/feather_8382000.png"
+                data-bs-target="#exampleModal" (click)="payloadInfo()"><img src="../../../assets/img/feather_8382000.png"
                     alt=""></button>
         </div>
     </div>
     <!-------------------------------------------------- Modal -------------------------------->
     <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
+            <form class="modal-content modal-bg" [formGroup]="formPublicaciones" (ngSubmit)="submitPublicacion()">
                 <div class="modal-header">
                     <h1 class="modal-title TextoShareHubFont fw-bold text-white fs-5" id="exampleModalLabel">Publicar
                     </h1>
@@ -34,7 +34,7 @@
                         <label for="inputDescGrupo" class="text-color TextoShareHubFont mb-2">¿Que quieres decir en esta
                             publicacion?</label>
                         <textarea type="text" name="" id="inputDescGrupo" cols="30" rows="5"
-                            class="inputEditar rounded px-3" formControlName="textoPublicacion"></textarea>
+                            class="inputEditar rounded px-3" formControlName="textPublicacion"></textarea>
                     </div>
                     <div class="mb-3 d-flex flex-column">
                         <label for="inputNombreGrupo" class="text-color TextoShareHubFont mb-2">Subir imagen</label>
@@ -47,10 +47,9 @@
                         data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-guardar fw-semibold">Publicar</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-
 
 </div>
 }@else {

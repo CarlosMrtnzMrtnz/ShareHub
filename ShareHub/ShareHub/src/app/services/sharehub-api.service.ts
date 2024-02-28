@@ -13,7 +13,7 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        const headers = new HttpHeaders().set('Authorization', `Beares ${Token}` )
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
@@ -31,19 +31,22 @@ export class SharehubApiService {
 
     putGrupo(grupoId: string, dataGrupo: any) {
         return this.http.put(
-            `${this.urlApi}/actualizar-grupo/${grupoId}`,
+            `${this.urlApi}/actualizar-grupo/${grupoId}/grupo`,
             dataGrupo
         );
     }
 
+    postMiembroGrupo(idGrupoUrl: string | null, value: any) {
+        throw new Error('Method not implemented.');
+    }
+
     // usuarios ---------------------------------------------------------
     getUsuario(CorreoUser: string) {
-
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
-        return this.http.get(this.urlApi + '/consultar-grupos', {headers});
+        return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);
     }
     getUsuarios() {
-        return this.http.get(`${this.urlApi}/consultar-usuario/`);
+        const headers = new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('token')}`)
+        return this.http.get(`${this.urlApi}/consultar-usuarios`, {headers});
     }
 
     postusuario(datausuario: any) {
@@ -60,12 +63,34 @@ export class SharehubApiService {
             dataUser
         );
     }
+
+    postDesencriptarPayload(token:string | null) : any{
+        if(token != null){
+            const headers = new HttpHeaders().set('Authorization', `Beares ${token}`)
+            return this.http.get(this.urlApi + '/token-info', {headers});
+        }else{
+            return {msg: 'sin token'}
+        }
+    }
 // ------------------------------------Servicios Publicacion---------------------
     postPublicacion(dataPublicacion: any) {
-        return this.http.post(`${this.urlApi}/publicacion`, dataPublicacion);
+        return this.http.post(`${this.urlApi}/crear-publicacion/publicacion`, dataPublicacion);
     }
 
+    deletePublicacion(publicacionId:string) {
+        return this.http.delete(`${this.urlApi}/eliminar-publicacion/${publicacionId}`)
+    }
 
+    getPublicaciones() {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
+        return this.http.get(this.urlApi + '/consultar-publicaciones', {headers});
+    }
+    getUnaPublicacion(publicacionId: string) {
+        return this.http.get(`${this.urlApi}/consultar-publicacion/${publicacionId}`)
+    }
+    putPublicacion(publicacionId: string, dataPublicacion:any) {
+        return this.http.put(`${this.urlApi}/actualizar-publicacion/${publicacionId}/publicacion`, dataPublicacion)
+    }
 // -------------------------------------Validacion token------------------------
     estaLogueado() :boolean {
         let estado = (sessionStorage.getItem('token')) ? true : false

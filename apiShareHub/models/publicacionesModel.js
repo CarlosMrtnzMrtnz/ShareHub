@@ -1,21 +1,21 @@
 const mongoose = require('mongoose')
 
 const publicacionesSchema = mongoose.Schema({
-    nombre: {
+    idUsuario: {
         type: String,
-        require: false
-    },
-    imagenUsuario: {
-        type: String,
-        require: false
+        require: true
     },
     imagenPublicacion: {
         type: String,
         require: false
     },
-    textoPublicacion: {
+    textPublicacion: {
         type: String,
-        require: true
+        require: false
+    },
+    comentario:{
+        type: String,
+        require: false
     }
 }, {
     timestamps: true,

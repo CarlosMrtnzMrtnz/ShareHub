@@ -16,6 +16,6 @@ exports.generarToken = async (req, res) => {
         id: usuario._id,
     }
 
-    const token = jwt.sign(payload, process.env.SECRET_KEY_JWT, {expiresIn: '1h'})
+    const token = jwt.sign(payload, process.env.SECRET_KEY_JWT, {expiresIn: '100h'})
     return res.status(202).json({ token })
 }

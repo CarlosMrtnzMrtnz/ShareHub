@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SharehubApiService } from '../../services/sharehub-api.service';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
 @Component({
     selector: 'app-registro',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
     templateUrl: './registro.component.html',
     styleUrl: './registro.component.css'
 })
@@ -64,6 +64,10 @@ export class RegistroComponent {
 
 
             console.log(respuestaAPI);
+            setTimeout(() => {
+                this.router.navigate(['/'])
+
+            }, 2000);
 
 
         }, error => {
