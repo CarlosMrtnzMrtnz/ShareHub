@@ -13,7 +13,7 @@ export class SharehubApiService {
 
     //   -------------------------- SERVICE GRUPOS --------------------------
     getGrupos() {
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
+        const headers = new HttpHeaders().set('Authorization', `Beares ${Token}` )
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
     }
 
