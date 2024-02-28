@@ -89,12 +89,14 @@ export class PerfilComponent {
 
     submitFormEditar() {
         if (this.formPerfil.valid) {
+
             const formData: any = new FormData();
             formData.append('nombre', this.formPerfil.get('nombre')!.value);
             formData.append('descripcionuser', this.formPerfil.get('descripcionuser')!.value);
             formData.append('idHidden', this.formPerfil.get('idHidden')!.value);
 
             const imguserFile = this.formPerfil.get('imguser')!.value;
+            console.log("🚀 ~ PerfilComponent ~ submitFormEditar ~ imguserFile:", imguserFile)
             if (imguserFile != "") {
                 formData.append('imguser', imguserFile);
             } else {
@@ -102,12 +104,15 @@ export class PerfilComponent {
             }
 
 
-            console.log('Entro en actualizar');
+            console.log(formData);
             this.PerfilServices.putUsuario(this.formPerfil.value.idHidden, formData).subscribe((respuestaAPI) => {
                 Swal.fire({
                     title: 'Perfil actualizado correctamente!',
                     icon: 'success',
                 });
+                setTimeout(() => {
+                    location.reload()
+                }, 1000);
             });
         } else {
             Swal.fire({

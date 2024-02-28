@@ -89,10 +89,21 @@ exports.actualizarUsuario = async (req, res) => {
                 res.status(404).send({ error: "No se ha encontrado el usuario" })
                 return
             }
-            console.log(req.files);
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log(req.body);
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
+            console.log("---------------------------------------------------------------------------");
             const { nombre, descripcionuser } = req.body
             dataUsuario.nombre = nombre
             dataUsuario.descripcionuser = descripcionuser
+            dataUsuario.CorreoUser = dataUsuario.CorreoUser
+            dataUsuario.clave = dataUsuario.clave
             if (req.files.length != 0) {
                 const imagenUser = req.files
                 console.log(req.files);
@@ -102,6 +113,8 @@ exports.actualizarUsuario = async (req, res) => {
                 })
                 dataUsuario.imguser = `http://localhost:4000/assets/perfil/${req.body.imguser.filename}`
 
+                console.log("******************************************************************");
+                console.log("******************************************************************");
                 console.log("******************************************************************");
 
                 console.log(dataUsuario);
@@ -114,6 +127,7 @@ exports.actualizarUsuario = async (req, res) => {
 
             // -----------------------------------------
 
+            console.log("🚀 ~ exports.actualizarUsuario= ~ req.params.usuarioId:", req.params.usuarioId)
 
             dataUsuario = await usuariosModel.findOneAndUpdate({ _id: req.params.usuarioId }, dataUsuario, { new: true })
             res.json(dataUsuario)
