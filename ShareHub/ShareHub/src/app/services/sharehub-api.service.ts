@@ -42,9 +42,7 @@ export class SharehubApiService {
 
     // usuarios ---------------------------------------------------------
     getUsuario(CorreoUser: string) {
-
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${Token}` )
-        return this.http.get(this.urlApi + '/consultar-grupos', {headers});
+        return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);
     }
     getUsuarios() {
         const headers = new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('token')}`)
@@ -84,7 +82,7 @@ export class SharehubApiService {
     }
 
     getPublicaciones() {
-        const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
         return this.http.get(this.urlApi + '/consultar-publicaciones', {headers});
     }
     getUnaPublicacion(publicacionId: string) {

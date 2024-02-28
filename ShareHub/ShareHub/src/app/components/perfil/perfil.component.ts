@@ -26,7 +26,7 @@ export class PerfilComponent {
     formPerfil: FormGroup;
     private PerfilServices = inject(SharehubApiService);
     listadoDeUsuarios = signal<any>([]);
-    idPerfilUrl: string | null;
+    idPerfilUrl: any;
 
     nombre: string = '';
     CorreoUser: string = '';
