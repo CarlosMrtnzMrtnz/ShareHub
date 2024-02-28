@@ -20,6 +20,10 @@ const UsuariosModel =mongoose.Schema({
     descripcionuser: {
         type: String,
         require: false
+    },
+    amigos:{
+        type: Array,
+        require:false
     }
 },{
     timestamps: true,
