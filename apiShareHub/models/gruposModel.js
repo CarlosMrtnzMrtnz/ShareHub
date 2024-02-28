@@ -15,7 +15,7 @@ const gruposModel = mongoose.Schema({
     },
     miembros:{
         type: Array,
-        required: true
+        required: false
     }
 },
 {

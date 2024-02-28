@@ -23,7 +23,8 @@ export class GruposComponent {
     formGrupos: FormGroup;
     private GruposServices = inject(SharehubApiService);
     listadoDeGrupos = signal<any>([]);
-    listaUsuarios:any= [];
+    listaUsuarios: any = [];
+    listaMiembros: any = [];
     idGrupoUrl: null | string;
 
     nombreGrupo: string = '';
@@ -68,24 +69,31 @@ export class GruposComponent {
         console.log('Se inicio el componente');
     }
 
-
     submitFormEditar() {
         if (this.formGrupos.valid) {
-            const formData:any = new FormData();
-            formData.append('nombreGrupo', this.formGrupos.get('nombreGrupo')!.value);
-            formData.append('descripcionGrupo', this.formGrupos.get('descripcionGrupo')!.value);
+            const formData: any = new FormData();
+            formData.append(
+                'nombreGrupo',
+                this.formGrupos.get('nombreGrupo')!.value
+            );
+            formData.append(
+                'descripcionGrupo',
+                this.formGrupos.get('descripcionGrupo')!.value
+            );
             formData.append('idHidden', this.formGrupos.get('idHidden')!.value);
 
             const imgGrupoFile = this.formGrupos.get('imgGrupo')!.value;
-            if (imgGrupoFile != "") {
+            if (imgGrupoFile != '') {
                 formData.append('imgGrupo', imgGrupoFile);
-            }else{
-                formData.append('imgGrupo', "");
+            } else {
+                formData.append('imgGrupo', '');
             }
 
-
             console.log('Entro en actualizar');
-            this.GruposServices.putGrupo(this.formGrupos.value.idHidden, formData).subscribe((respuestaAPI) => {
+            this.GruposServices.putGrupo(
+                this.formGrupos.value.idHidden,
+                formData
+            ).subscribe((respuestaAPI) => {
                 Swal.fire({
                     title: 'Grupo actualizado correctamente!',
                     icon: 'success',
@@ -128,34 +136,66 @@ export class GruposComponent {
     }
 
     // Agregar miembros ---------------------------
-    obtenerUsuarios(){
+    obtenerUsuarios() {
         this.GruposServices.getUsuarios().subscribe({
-            next: (usuarios : any) =>{
+            next: (usuarios: any) => {
                 console.log(usuarios);
                 this.listaUsuarios = usuarios;
             },
-            error: (err) =>{
-                console.log(err)
-            }
-        })
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 
-    agregarMiembro(){
-        // this.GruposServices.postMiembroGrupo(this.idGrupoUrl, this.inputHiddenID.value).subscribe({
-        //     next: (respuestaAPI) => {
-        //         Swal.fire({
-        //             title: 'Miembro agregado correctamente!',
-        //             icon:'success',
-        //         });
-        //         this.obtenerUsuarios();
-        //     },
-        //     error: (err) => {
-        //         console.log(err);
-        //     },
-        // });
+    agregarMiembro(idUsuario: string) {
+        this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe({
+            next: (grupo: any) => {
+                let dataConsultaGrupo = grupo;
+                const formData: any = new FormData();
+                formData.append('imgGrupo', '');
+                formData.append(
+                    'nombreGrupo',
+                    dataConsultaGrupo.nombreGrupo
+                );
+                formData.append(
+                    'descripcionGrupo',
+                    dataConsultaGrupo.descripcionGrupo
+                );
+                dataConsultaGrupo.miembros.push(idUsuario);
+                formData.append(
+                    'miembros',
+                    dataConsultaGrupo.miembros
+                );
+                this.GruposServices.putGrupo(
+                    this.idGrupoUrl,
+                    formData
+                ).subscribe({
+                    next: () => {
+                        this.obtenerMiembrosEliminar()
+                        alert('miembro agregado');
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 
-    obtenerMiembrosEliminar(){
-
+    obtenerMiembrosEliminar() {
+        this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe({
+            next: (grupo: any) => {
+                let dataConsultaGrupo = grupo;
+                this.listaMiembros = dataConsultaGrupo.miembros;
+                console.log("🚀 ~ GruposComponent ~ this.GruposServices.getUnGrupo ~ this.listaMiembros:", this.listaMiembros)
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 }
