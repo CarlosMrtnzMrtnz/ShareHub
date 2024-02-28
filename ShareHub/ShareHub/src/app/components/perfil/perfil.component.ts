@@ -78,12 +78,6 @@ export class PerfilComponent {
                 },
             });
         });
-
-
-
-
-        console.log('Se inicio el componente');
-
     }
 
 
@@ -96,7 +90,6 @@ export class PerfilComponent {
             formData.append('idHidden', this.formPerfil.get('idHidden')!.value);
 
             const imguserFile = this.formPerfil.get('imguser')!.value;
-            console.log("🚀 ~ PerfilComponent ~ submitFormEditar ~ imguserFile:", imguserFile)
             if (imguserFile != "") {
                 formData.append('imguser', imguserFile);
             } else {
@@ -157,8 +150,6 @@ export class PerfilComponent {
         this.PerfilServices
             .postDesencriptarPayload(tokenSession)
             .subscribe((respuestaApi: any) => {
-                console.log("--------> ", respuestaApi);
-                console.log("🚀 ~ PerfilComponent ~ .subscribe ~ this._id:", this._id)
                 this.idPersonaSesion = respuestaApi.id;
                 this.verificarIDUsuario = (this.idPersonaSesion == this._id) ? true : false
             });
