@@ -11,6 +11,7 @@ export class SharehubApiService {
     constructor() { }
 
     //   -------------------------- SERVICE GRUPOS --------------------------
+    
     getGrupos() {
         const headers = new HttpHeaders().set('Authorization', 'Beares eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZhYjhjZmYzMzE4OTA3ZTRiZDJiOCIsImlhdCI6MTcwODEwOTgyNywiZXhwIjoxNzA4MTEzNDI3fQ.hiFhddu3erEOeEDPK_VoIBKYdWBonV-KbCV5XXHzJDI')
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});

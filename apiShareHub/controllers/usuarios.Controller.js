@@ -89,16 +89,6 @@ exports.actualizarUsuario = async (req, res) => {
                 res.status(404).send({ error: "No se ha encontrado el usuario" })
                 return
             }
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log(req.body);
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
-            console.log("---------------------------------------------------------------------------");
             const { nombre, descripcionuser } = req.body
             dataUsuario.nombre = nombre
             dataUsuario.descripcionuser = descripcionuser
@@ -113,21 +103,11 @@ exports.actualizarUsuario = async (req, res) => {
                 })
                 dataUsuario.imguser = `http://localhost:4000/assets/perfil/${req.body.imguser.filename}`
 
-                console.log("******************************************************************");
-                console.log("******************************************************************");
-                console.log("******************************************************************");
-
-                console.log(dataUsuario);
-
-                console.log("******************************************************************");
-
             } else {
                 dataUsuario.imguser = dataUsuario.imguser
             }
 
             // -----------------------------------------
-
-            console.log("🚀 ~ exports.actualizarUsuario= ~ req.params.usuarioId:", req.params.usuarioId)
 
             dataUsuario = await usuariosModel.findOneAndUpdate({ _id: req.params.usuarioId }, dataUsuario, { new: true })
             res.json(dataUsuario)

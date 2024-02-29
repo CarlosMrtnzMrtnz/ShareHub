@@ -145,6 +145,8 @@ export class PerfilComponent {
         });
     }
 
+    
+
     tokenUsuario() {
         let tokenSession = sessionStorage.getItem('token');
         this.PerfilServices
