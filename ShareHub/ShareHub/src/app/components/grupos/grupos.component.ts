@@ -8,7 +8,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GruposInterface } from '../../interface/grupos-interface';
 import Swal from 'sweetalert2';
 
@@ -34,7 +34,7 @@ export class GruposComponent {
 
     inputHiddenID = new FormControl();
 
-    constructor(private fb: FormBuilder, private rutaId: ActivatedRoute) {
+    constructor(private fb: FormBuilder, private rutaId: ActivatedRoute, private router: Router) {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
@@ -53,6 +53,9 @@ export class GruposComponent {
     }
 
     ngOnInit(): void {
+        if (sessionStorage.getItem('token') == null) {
+            this.router.navigate(['/']);
+        }
         this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe({
             next: (grupos: any) => {
                 let gruposData: GruposInterface = grupos;
@@ -135,7 +138,7 @@ export class GruposComponent {
         });
     }
 
-    // Agregar miembros ---------------------------
+// -------------------------------------- Agregar miembros -------------------------------------------
     obtenerUsuarios() {
         this.GruposServices.getUsuarios().subscribe({
             next: (usuarios: any) => {
@@ -154,25 +157,19 @@ export class GruposComponent {
                 let dataConsultaGrupo = grupo;
                 const formData: any = new FormData();
                 formData.append('imgGrupo', '');
-                formData.append(
-                    'nombreGrupo',
-                    dataConsultaGrupo.nombreGrupo
-                );
+                formData.append('nombreGrupo', dataConsultaGrupo.nombreGrupo);
                 formData.append(
                     'descripcionGrupo',
                     dataConsultaGrupo.descripcionGrupo
                 );
                 dataConsultaGrupo.miembros.push(idUsuario);
-                formData.append(
-                    'miembros',
-                    dataConsultaGrupo.miembros
-                );
+                formData.append('miembros', dataConsultaGrupo.miembros);
                 this.GruposServices.putGrupo(
                     this.idGrupoUrl,
                     formData
                 ).subscribe({
                     next: () => {
-                        this.obtenerMiembrosEliminar()
+                        this.obtenerMiembrosEliminar();
                         alert('miembro agregado');
                     },
                     error: (err) => {
@@ -186,12 +183,79 @@ export class GruposComponent {
         });
     }
 
+// ----------------------------------- Eliminar miembros ---------------------------------
     obtenerMiembrosEliminar() {
         this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe({
             next: (grupo: any) => {
                 let dataConsultaGrupo = grupo;
                 this.listaMiembros = dataConsultaGrupo.miembros;
-                console.log("🚀 ~ GruposComponent ~ this.GruposServices.getUnGrupo ~ this.listaMiembros:", this.listaMiembros)
+                console.log(
+                    '🚀 ~ GruposComponent ~ this.GruposServices.getUnGrupo ~ this.listaMiembros:',
+                    this.listaMiembros
+                );
+                this.listaMiembros.forEach(
+                    (idUsuario: string, index: number) => {
+                        this.GruposServices.getUsuario(idUsuario).subscribe({
+                            next: (usuarioInfo: any) => {
+                                this.listaMiembros[index] = {
+                                    ...this.listaMiembros[index],
+                                    nombre: usuarioInfo.nombre,
+                                    imguser: usuarioInfo.imguser,
+                                };
+                                console.log('Lista de miembros actualizada:',this.listaMiembros);
+                            },
+                            error: (err) => {
+                                console.log(err);
+                            },
+                        });
+                    }
+                );
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
+    }
+
+    eliminarMiembro(idUsuario: string) {
+        // Obtener el índice del miembro en la lista
+        const index = this.listaMiembros.findIndex((miembro: any) => miembro._id === idUsuario);
+        console.log(idUsuario);
+
+
+        this.GruposServices.getUnGrupo(this.idGrupoUrl).subscribe({
+            next: (grupo: any) => {
+                let dataConsultaGrupo = grupo;
+                const formData: any = new FormData();
+                formData.append('imgGrupo', '');
+                formData.append('nombreGrupo', dataConsultaGrupo.nombreGrupo);
+                formData.append('descripcionGrupo',dataConsultaGrupo.descripcionGrupo);
+                if (index !== -1) {
+                    // eliminar el miembro del array
+                    this.listaMiembros.splice(index, 1);
+                    console.log(this.listaMiembros);
+
+
+                    // llamar a service para eliminar el miembro de la base de datos
+                    this.GruposServices.eliminarMiembroDeDB(idUsuario).subscribe({
+                        next: (respuesta) => {
+                            console.log(idUsuario);
+                            console.log(
+                                'Miembro eliminado de la base de datos:',
+                                respuesta
+                            );
+
+                            // luego de eliminar actualizar la lista en el componente
+                            this.obtenerMiembrosEliminar();
+                            alert('Miembro eliminado correctamente');
+                        },
+                        error: (err) => {
+                            console.log(err);
+                        },
+                    });
+                } else {
+                    console.log('No se encontró el miembro en la lista');
+                }
             },
             error: (err) => {
                 console.log(err);

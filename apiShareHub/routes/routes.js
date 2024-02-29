@@ -14,6 +14,8 @@ router.get('/consultar-grupo/:grupoId', gruposController.consultarUnGrupo);
 router.post('/crear-grupo/:directorio', mdlMulter.array("imgGrupo"),  gruposController.crearGrupo)
 router.put('/actualizar-grupo/:grupoId/:directorio',mdlMulter.array("imgGrupo"), gruposController.actualizarGrupo)
 router.delete('/eliminar-grupo/:grupoId', gruposController.eliminarGrupo)
+router.delete('/eliminar-miembro/:miembroId', gruposController.eliminarMiembroDeGrupo);
+
 
 
 

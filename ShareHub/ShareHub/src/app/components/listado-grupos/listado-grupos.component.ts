@@ -17,6 +17,9 @@ export class ListadoGruposComponent {
     constructor(private router: Router) {}
 
     ngOnInit() {
+        if (sessionStorage.getItem('token') == null) {
+            this.router.navigate(['/']);
+        }
         this.GruposServices.getGrupos().subscribe({
             next: (grupos) => {
                 this.gruposData.set(grupos);

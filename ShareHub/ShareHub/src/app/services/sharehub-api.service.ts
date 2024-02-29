@@ -36,6 +36,10 @@ export class SharehubApiService {
         );
     }
 
+    eliminarMiembroDeDB(idMiembro: string){
+        return this.http.delete(`${this.urlApi}/eliminar-miembro/${idMiembro}`);
+    }
+
     // usuarios ---------------------------------------------------------
     getUsuario(CorreoUser: string) {
         return this.http.get(`${this.urlApi}/consultar-usuario/${CorreoUser}`);

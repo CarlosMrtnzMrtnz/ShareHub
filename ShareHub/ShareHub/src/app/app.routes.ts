@@ -17,14 +17,14 @@ let vistaUsuarioSession = ''
 
 export const routes: Routes = [
     { path: 'inicio', title: `Inicio | ${tituloPagina}`, component: InicioComponent },
-    {path:`grupos/:idGrupo`,title: `Grupos | ${tituloPagina}`,component:GruposComponent},
+    {path:`grupos/:idGrupo`,title: `Grupo | ${tituloPagina}`,component:GruposComponent},
     {path:'mis-grupos', title: `Mis grupos | ${tituloPagina}`, component:ListadoGruposComponent},
     { path: 'mi-perfil/:idPerfil', canMatch: [autenticacionGuardGuard], title: `Perfil | ${tituloPagina}`, component: PerfilComponent },
     { path: 'perfil/:idPerfil', canMatch: [autenticacionGuardGuard], title: `Perfil | ${tituloPagina}`, component: PerfilComponent },
-    { path: '', title: "login", component: LoginComponent },
+    { path: '', title: `Login | ${tituloPagina}`, component: LoginComponent },
     { path: 'inicio', title: "Inicio de sesion", component: InicioComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: 'registro-grupos', canMatch: [autenticacionGuardGuard], title: `Registro Grupos | ${tituloPagina}`, component: RegistroGruposComponent },
+    { path: 'registro-grupos', canMatch: [autenticacionGuardGuard], title: `Crea un grupo | ${tituloPagina}`, component: RegistroGruposComponent },
     { path: '404', title: `error 404 | ${tituloPagina}`, component: Erro404Component },
     // ----------------------------ultima ruta---------------------------------------
     { path: '**', pathMatch: 'full', redirectTo: "404" }
