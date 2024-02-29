@@ -3,6 +3,7 @@ import { Component, inject, signal, EventEmitter, Input, Output } from '@angular
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SharehubApiService } from '../../services/sharehub-api.service';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'app-menu-derecha',
@@ -13,9 +14,12 @@ import { SharehubApiService } from '../../services/sharehub-api.service';
 })
 export class MenuDerechaComponent {
     userdata = signal<any>([])
+    listaUsuarios: any = [];
+    usuariosfiltre: any = [];
     private seviceUser = inject(SharehubApiService)
-    @Input() nombre!: string
-    @Input() imguser!: string
+    @Input () rutaImagenUsuario!: string
+    @Input () rutaNombre!: string
+
 
     // submitPublicacion() {
     //     if (this.formPublicaciones.valid) {
@@ -32,15 +36,25 @@ export class MenuDerechaComponent {
 
     ngOnInit(){
         this.seviceUser.getUsuarios().subscribe({
-            next: (user) => {
-                this.userdata.set(user)
-                console.log(this.userdata());
+            next: (usuarios: any) => {
+                console.log(usuarios);
+                this.listaUsuarios = usuarios;
+                this.usuariosfiltre= this.listaUsuarios.slice(0, this.listaUsuarios.length-16)
+                console.log(this.usuariosfiltre);
+
+
+
+
+
 
 
             },
             error: (err) => {
                 console.log(err);
-            }
-        })
+            },
+        });
+
+
+
     }
 }
