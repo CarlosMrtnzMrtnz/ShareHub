@@ -5,15 +5,15 @@
     <div class="col-12 d-none d-lg-block col-lg-2 contenedorIzq">
         <app-menu-izquierda></app-menu-izquierda>
     </div>
-    <div class="col-12 col-lg-7">
+    <div class="col-12 col-lg-7 ">
         <router-outlet></router-outlet>
     </div>
     <div class="col-lg-3 contenedorDer">
         <app-menu-derecha></app-menu-derecha>
     </div>
-    <div class="position-fixed sticky-bottom me-5">
+    <div class="d-flex justify-content-end sticky-bottom me-5 clase ">
         <!--------------------------------------------- Button trigger modal ----------------------->
-        <div class="d-flex justify-content-end  ">
+        <div class="d-flex  z-n1 clase ">
             <button type="button" class="rounded-circle boton btn p-4  my-2 mx-5 " data-bs-toggle="modal"
                 data-bs-target="#exampleModal" (click)="payloadInfo()"><img src="../../../assets/img/feather_8382000.png"
                     alt=""></button>

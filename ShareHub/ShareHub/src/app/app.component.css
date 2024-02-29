@@ -64,4 +64,7 @@ body {
 .esta{
     margin: 200px;
 }
-
+.clase{
+    margin-left: auto;
+    width: fit-content;
+}
