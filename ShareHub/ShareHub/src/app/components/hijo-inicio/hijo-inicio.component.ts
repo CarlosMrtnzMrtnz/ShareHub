@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { SharehubApiService } from '../../services/sharehub-api.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hijo-inicio',
@@ -14,7 +15,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
     CommonModule,
     InicioComponent,
     ReactiveFormsModule,
-
+    RouterLink
   ],
   templateUrl: './hijo-inicio.component.html',
   styleUrl: './hijo-inicio.component.css'
@@ -29,6 +30,7 @@ export class HijoInicioComponent {
     @Input () rutaComentario!: string
     @Input () rutaId!: string
     @Input () rutaTexto!: string
+    @Input () idUsuario!: string
 
     usuario!: string
     formPublicaciones: FormGroup;
