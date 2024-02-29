@@ -15,6 +15,7 @@ export class NavbarComponent {
     private Services = inject(SharehubApiService);
     idUsuarioPayload!: string;
     URLProyecto = "//" + location.hostname + ":" + location.port
+    imguser: string = '';
     constructor(private router: Router) { }
 
     ngOnInit() {
@@ -25,14 +26,10 @@ export class NavbarComponent {
         let tokenSession = sessionStorage.getItem('token');
         this.Services.postDesencriptarPayload(tokenSession).subscribe(
             (respuestaApi: any) => {
-                console.log(respuestaApi.id);
                 this.idUsuarioPayload = respuestaApi.id;
                 this.Services.getUsuario(respuestaApi.id).subscribe({
                     next: (respuestaApi: any) => {
-                        console.log(respuestaApi);
-                        let imagenUsuario = respuestaApi.imguser
-                        console.log(imagenUsuario);
-
+                        this.imguser = respuestaApi.imguser;
                     },
                     error: (err) => {
                         console.log(err);

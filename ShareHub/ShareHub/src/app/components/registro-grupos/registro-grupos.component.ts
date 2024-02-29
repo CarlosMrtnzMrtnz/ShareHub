@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { SharehubApiService } from '../../services/sharehub-api.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-registro-grupos',
@@ -24,13 +25,19 @@ export class RegistroGruposComponent {
     inputFile!:any
     archivo:any
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private router: Router) {
         this.formGrupos = this.fb.group({
             nombreGrupo: ['', [Validators.required]],
             descripcionGrupo: [''],
             imgGrupo: [''],
             // miembros: ['']
         });
+    }
+
+    ngOnInit(){
+        if (sessionStorage.getItem('token') == null) {
+            this.router.navigate(['/']);
+        }
     }
 
     agregarImagenArr(event:any){

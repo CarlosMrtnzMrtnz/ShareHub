@@ -66,20 +66,15 @@
                                 @for(usuario of listaUsuarios; track usuario._id){
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <div class="d-flex align-items-center">
-                                        <img [src]="usuario.imguser" alt="" class="rounded-circle">
+                                        <img [src]="usuario.imguser" alt="" class="rounded-circle img-usuario me-3">
                                         <div class="text-white">{{ usuario.nombre }}</div>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn color-btn text-dark fw-bold rounded-pill w-100 px-3" (click)="agregarMiembro(usuario._id)">+</button>
+                                        <button type="button" class="btn color-btn text-dark fw-bold rounded-pill w-100 px-3" (click)="agregarMiembro(usuario._id)"><i class="fa-solid fa-user-plus"></i></button>
                                     </div>
                                 </div>
                                 }
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
-                                data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-guardar fw-semibold">Guardar cambios</button>
                         </div>
                     </div>
                 </div>
@@ -100,12 +95,20 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-cancelar text-dark fw-semibold"
-                                data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-guardar fw-semibold">Guardar cambios</button>
+                            <!--lista de Miembros -->
+                            <div class="d-flex flex-column">
+                                @for(miembro of listaMiembros; track miembro._id){
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img [src]="miembro.imguser" alt="" class="rounded-circle img-usuario me-3">
+                                        <div class="text-white">{{ miembro.nombre }}</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn color-btn text-dark fw-bold rounded-pill w-100 px-3" (click)="eliminarMiembro(miembro._id)"><i class="fa-solid fa-user-minus"></i></button>
+                                    </div>
+                                </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

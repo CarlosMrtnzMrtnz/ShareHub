@@ -18,20 +18,14 @@ exports.crearGrupo = async (req, res) => {
         } else {
             console.log("******************************************************************");
             console.log(req.body);
-            console.log("******************************************************************");
-            console.log("******************************************************************");
             console.log(req.files);
             console.log("******************************************************************");
             let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
             req.body.imgGrupo = imagenGrupo.find((archivo) => {
                 return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
             })
-
-
             req.body.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
         }
-
-
         let nuevoGrupo = new gruposModel(req.body)
         await nuevoGrupo.save()
         res.send(nuevoGrupo)
@@ -82,17 +76,14 @@ exports.actualizarGrupo = async (req, res) => {
             if (req.files.length != 0) {
                 const imagenGrupo = req.files
                 console.log(req.files);
-                let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
+                let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "mp4", "gif"]
                 req.body.imgGrupo = imagenGrupo.find((archivo) => {
                     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
                 })
                 dataGrupo.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
 
                 console.log("******************************************************************");
-
                 console.log(dataGrupo);
-
-                console.log("******************************************************************");
 
             } else {
                 dataGrupo.imgGrupo = dataGrupo.imgGrupo
@@ -126,3 +117,28 @@ exports.consultarUnGrupo = async (req, res) => {
         console.log("Constructed Image URL:", req.body.imgGrupo);
     }
 }
+
+exports.eliminarMiembroDeGrupo = async (req, res) => {
+    try {
+        // Encuentra el grupo por su id
+        const grupo = await gruposModel.findById(req.params.grupoId);
+
+        // Verifica si el grupo existe
+        if (!grupo) {
+            return res.status(404).json({ mensaje: 'Grupo no encontrado' });
+        }
+
+        // filtra la lista de miembros para excluir al miembro a eliinar
+        grupo.miembros = grupo.miembros.filter((id) => id.toString() !== req.params.miembroId);
+
+        // guardar el grupo actualizado en la base de datos
+        await grupo.save();
+
+        res.json({ mensaje: 'Miembro eliminado' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
+
+
