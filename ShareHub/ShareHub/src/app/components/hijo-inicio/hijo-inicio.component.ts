@@ -180,39 +180,6 @@ XXX:boolean = false
         }
     }
 // -------------------------------Actualizar publicacion--------------------------
-// mostrarModal!: boolean
-// async activarModal(idPublicacion: string) {
-//     this.mostrarModal = false;
-//     let tokenSession = sessionStorage.getItem('token');
-//     let respuestaApi: any;
-//     let respuesta: any;
-//     try {
-//         respuestaApi = await this.publicacionesServices.postDesencriptarPayload(tokenSession).toPromise();
-//         this.idUsuarioPayload = respuestaApi.id;
-//         respuesta = await this.publicacionesServices.getUnaPublicacion(idPublicacion).toPromise();
-//         this.usuario = respuesta.idUsuario;
-
-//         // Declara la variable XXX fuera del bloque condicional
-//         let XXX: boolean;
-
-//         if (this.idUsuarioPayload == this.usuario) {
-//             XXX = true;
-//             this.mostrarModal = XXX;
-//             // No es necesario declarar nuevamente la variable, solo asigna el valor
-//         } else {
-//             XXX = false;
-//             this.mostrarModal = XXX;
-//             // No es necesario declarar nuevamente la variable, solo asigna el valor
-//         }
-
-//         console.log(`XXX = ${XXX}`); // Imprime el valor de XXX
-
-//         // Utiliza la variable XXX para controlar la visibilidad del modal
-//         // this.mostrarModal = XXX;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 actualizarPublicacionX(idPublicacion: string) {
     this.publicacionesServices.getUnaPublicacion(idPublicacion).subscribe({

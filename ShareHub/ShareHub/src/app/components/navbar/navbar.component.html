@@ -21,7 +21,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-color hidden-nav-item" routerLink="/">Chat</a>
+                    <a class="nav-link text-color hidden-nav-item" [routerLink]="['/chat', idUsuarioPayload]"  >Chat</a>
                 </li>
                 <li class="nav-item img-hidden-sm">
                     <a class="nav-link text-color" [href]="URLProyecto+'/mi-perfil/'+idUsuarioPayload">
@@ -52,7 +52,7 @@
                                 <li><a class="dropdown-item text-color" routerLink="/mis-grupos">Mis Grupos</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item text-color" routerLink="/">Chat</a></li>
+                        <li><a class="dropdown-item text-color" [routerLink]="['/chat', idUsuarioPayload]" >Chat</a></li>
                     </ul>
                 </li>
 

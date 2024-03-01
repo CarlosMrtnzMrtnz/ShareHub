@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharehubApiService } from '../../services/sharehub-api.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -28,8 +29,13 @@ export class LoginComponent {
             let dataApi:any = data
             sessionStorage.setItem('token', dataApi.token)
             location.reload()
+
         }, err => {
             console.log(err);
+            Swal.fire({
+                title: 'Ingrese los datos correctamente!',
+                icon: 'error',
+            });
 
         }
         )

@@ -29,7 +29,10 @@ export class NavbarComponent {
                 this.idUsuarioPayload = respuestaApi.id;
                 this.Services.getUsuario(respuestaApi.id).subscribe({
                     next: (respuestaApi: any) => {
+                        console.log("-----------------");
+
                         console.log(respuestaApi);
+                        console.log("-----------------");
                         let imagenUsuario = respuestaApi.imguser
                         console.log(imagenUsuario);
 
