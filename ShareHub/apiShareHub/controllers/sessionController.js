@@ -7,6 +7,7 @@ exports.generarToken = async (req, res) => {
     const usuario = await UsuariosModel.findOne({ CorreoUser })
     if(!usuario){
         return res.status(401).json({error: "Credenciales invalidas (correo)"})
+        
     } 
     if (usuario.clave !== clave) {
         return res.status(401).json({error: "Credenciales invalidas (clave)"})

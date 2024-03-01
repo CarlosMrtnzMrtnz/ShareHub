@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SharehubApiService } from '../../src/app/services/sharehub-api.service';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { SharehubApiService } from '../../src/app/services/sharehub-api.service'
         InicioComponent,
         MenuDerechaComponent,
         LoginComponent,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ChatComponent
 
 
     ],

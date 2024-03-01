@@ -30,6 +30,13 @@ export class NavbarComponent {
                 this.Services.getUsuario(respuestaApi.id).subscribe({
                     next: (respuestaApi: any) => {
                         this.imguser = respuestaApi.imguser;
+                        console.log("-----------------");
+
+                        console.log(respuestaApi);
+                        console.log("-----------------");
+                        let imagenUsuario = respuestaApi.imguser
+                        console.log(imagenUsuario);
+
                     },
                     error: (err) => {
                         console.log(err);
