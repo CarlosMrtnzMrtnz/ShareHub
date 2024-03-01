@@ -90,6 +90,10 @@ exports.actualizarUsuario = async (req, res) => {
             dataUsuario.descripcionuser = descripcionuser
             dataUsuario.CorreoUser = dataUsuario.CorreoUser
             dataUsuario.clave = dataUsuario.clave
+            dataUsuario.amigos= dataUsuario.amigos
+            if (req.body.amigos) {
+                dataUsuario.amigos = req.body.amigos.split(",")
+            }   
             if (req.files.length != 0) {
                 const imagenUser = req.files
                 console.log(req.files);
@@ -115,6 +119,7 @@ exports.actualizarUsuario = async (req, res) => {
         res.status(500).send({ error: "Ha ocurrido algo, comuníquese con el administrador" })
     }
 }
+
 
 exports.consultarUnUsuario = async (req, res) => {
     try {

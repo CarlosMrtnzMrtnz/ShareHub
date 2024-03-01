@@ -16,7 +16,7 @@ let vistaUsuarioSession = ''
 
 
 export const routes: Routes = [
-    { path: 'inicio', title: `Inicio | ${tituloPagina}`, component: InicioComponent },
+    { path: 'inicio/', title: `Inicio | ${tituloPagina}`, component: InicioComponent },
     {path:`grupos/:idGrupo`,title: `Grupo | ${tituloPagina}`,component:GruposComponent},
     {path:'mis-grupos', title: `Mis grupos | ${tituloPagina}`, component:ListadoGruposComponent},
     { path: 'mi-perfil/:idPerfil', canMatch: [autenticacionGuardGuard], title: `Perfil | ${tituloPagina}`, component: PerfilComponent },

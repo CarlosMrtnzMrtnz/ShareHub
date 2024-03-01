@@ -38,39 +38,31 @@ export class RegistroComponent {
 
     ngOnInit() {
 
-        if (sessionStorage.getItem("token") != null) {
-            this.router.navigate(['/inicio'])
+        if (sessionStorage.getItem("token") != null || undefined) {
+            this.router.navigate([''])
         };
 
     }
-
-
-
-
-
-
     submitForm() {
-        console.log("registro");
+        if(this.formregistro.value.imguser == '' || this.formregistro.value.imguser  == null){
+            this.formregistro.value.imguser = 'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'
+        }
 
+
+        console.log(this.formregistro.value);
         this.registroService.postusuario(this.formregistro.value).subscribe(respuestaAPI => {
+
+
 
             Swal.fire({
                 title: "Usuario creado correctamente!",
                 icon: "success"
             });
             let dataApi: any = respuestaAPI
-            sessionStorage.setItem('token', dataApi.token)
-
-
-
             console.log(respuestaAPI);
             setTimeout(() => {
-                location.reload()
-                this.router.navigate(['/inicio'])
-
+                this.router.navigate([''])
             }, 2000);
-
-
         }, error => {
             Swal.fire({
                 title: "El correo electronico ya existe!",

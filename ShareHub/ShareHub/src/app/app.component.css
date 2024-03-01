@@ -26,7 +26,9 @@ body {
     border-right: 2px solid #c97bf6;
 }
 .boton {
-    margin-left: 1000px;
+    margin-left: auto;
+    width: 60px;
+    height: 60px;
 
     background-color: var(--amarillo-principal);
 
@@ -65,6 +67,10 @@ body {
     margin: 200px;
 }
 .clase{
-    margin-left: auto;
+margin-inline: auto;
     width: fit-content;
+}
+.medidaimg{
+    width: 30px;
+    height: 30px;
 }

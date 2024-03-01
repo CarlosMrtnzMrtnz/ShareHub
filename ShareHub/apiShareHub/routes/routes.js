@@ -19,7 +19,7 @@ router.delete('/eliminar-miembro/:miembroId', gruposController.eliminarMiembroDe
 
 
 
-// ?Rutas Uauario
+// ?Rutas Usuario
 router.get('/consultar-usuarios',mdJWT.verificarToken, usuarioController.consultarUsuarios);
 router.get('/consultar-usuario/:usuarioId', usuarioController.consultarUnUsuario);
 router.post('/crear-usuario', usuarioController.crearUsuario)

@@ -12,7 +12,7 @@ export class SharehubApiService {
     constructor() { }
 
     //   -------------------------- SERVICE GRUPOS --------------------------
-    
+
     getGrupos() {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
         return this.http.get(this.urlApi + '/consultar-grupos', {headers});
@@ -61,6 +61,12 @@ export class SharehubApiService {
     putUsuario(idusuario: string, dataUser: any) {
         return this.http.put(
             `${this.urlApi}/actualizar-usuario/${idusuario}/perfil`,
+            dataUser
+        );
+    }
+    putUsuarioSolito(idusuario: string, dataUser: any) {
+        return this.http.put(
+            `${this.urlApi}/actualizar-usuario/${idusuario}`,
             dataUser
         );
     }

@@ -99,6 +99,10 @@ export class PerfilComponent {
 
             console.log(formData);
             this.PerfilServices.putUsuario(this.formPerfil.value.idHidden, formData).subscribe((respuestaAPI) => {
+                console.log(this.formPerfil.value.idHidden);
+                console.log(formData);
+
+
                 Swal.fire({
                     title: 'Perfil actualizado correctamente!',
                     icon: 'success',
@@ -145,7 +149,7 @@ export class PerfilComponent {
         });
     }
 
-    
+
 
     tokenUsuario() {
         let tokenSession = sessionStorage.getItem('token');

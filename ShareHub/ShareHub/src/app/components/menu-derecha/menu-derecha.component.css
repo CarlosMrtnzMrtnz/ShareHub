@@ -17,6 +17,8 @@ body {
     border-right: 2px solid #c97bf6;
 }
 .boton {
+    height: 40px;
+    width: 40px;
     background-color: var(--amarillo-principal);
 
 }

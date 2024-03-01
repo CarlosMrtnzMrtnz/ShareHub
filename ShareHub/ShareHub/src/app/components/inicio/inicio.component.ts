@@ -24,6 +24,9 @@ export class InicioComponent {
 
     ngOnInit() {
 
+        if (sessionStorage.getItem("token") == null) {
+            this.router.navigate(['/'])
+        }
 
         this.publicacionesServices.getPublicaciones().subscribe({
             next: (publicaciones2) => {
@@ -55,9 +58,6 @@ export class InicioComponent {
             }
         })
 
-        if (sessionStorage.getItem("token") == null) {
-            this.router.navigate(['/'])
-        }
 
     }
     ngOnchange() {
