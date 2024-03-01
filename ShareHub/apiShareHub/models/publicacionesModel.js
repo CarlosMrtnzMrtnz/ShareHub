@@ -14,7 +14,7 @@ const publicacionesSchema = mongoose.Schema({
         require: false
     },
     comentario:{
-        type: String,
+        type: Array,
         require: false
     }
 }, {

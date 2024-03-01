@@ -10,6 +10,17 @@ exports.consultarPublicaciones = async (req, res) => {
     }
 }
 
+
+exports.consultarPublicacionesUsuario = async (req, res) => {
+    try {
+        let dataPublicacion = await publicacionesModel.find({idUsuario: req.params.idUsuario})
+        res.json(dataPublicacion)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
+    }
+}
+
 exports.crearPulicacion = async (req, res) => {
 
     try {

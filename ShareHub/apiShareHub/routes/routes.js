@@ -35,6 +35,7 @@ router.post('/ingreso', sessionController.generarToken)
 // -----------------------------rutas publicaciones---------------------------------------------------
 router.get('/consultar-publicaciones', publicacionController.consultarPublicaciones)
 router.get('/consultar-publicacion/:idPublicacion', publicacionController.consultarUnaPublicacion)
+router.get('/consultar-publicaciones-usuario/:idUsuario', publicacionController.consultarPublicacionesUsuario)
 router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
 router.put('/actualizar-publicacion/:idPublicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.actualizarPublicacion)
 router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
