@@ -2,8 +2,25 @@ const publicacionesModel = require('../models/publicacionesModel')
 
 exports.consultarPublicaciones = async (req, res) => {
     try {
-        let dataPublicacion = await publicacionesModel.find()
-        res.json(dataPublicacion)
+        let dataPublicacion = await publicacionesModel.find({tipoPublicacion : true})
+        const { tipoPublicacion } = req.body
+        dataPublicacion.tipoPublicacion = tipoPublicacion
+            res.json(dataPublicacion)
+            console.log(dataPublicacion)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
+    }
+}
+exports.consultarPublicacionesGrupos = async (req, res) => {
+    try {
+        let dataPublicacion = await publicacionesModel.find({tipoPublicacion : false})
+        const { tipoPublicacion } = req.body
+        dataPublicacion.tipoPublicacion = tipoPublicacion
+        // if (req.body.tipoPublicacion === true) {
+            res.json(dataPublicacion)
+            console.log(dataPublicacion)
+        // }
     } catch (error) {
         console.log(error);
         res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
@@ -27,6 +44,7 @@ exports.crearPulicacion = async (req, res) => {
         }else{
             req.body.imagenPublicacion = ""
         }
+
         let nuevaPublicacion = new publicacionesModel(req.body)
         await nuevaPublicacion.save()
         res.send(nuevaPublicacion)

@@ -1,4 +1,5 @@
 const gruposModel = require('../models/gruposModel')
+const publicacionesModel = require('../models/publicacionesModel')
 
 exports.consultarGrupos = async (req, res) => {
     try {
@@ -140,5 +141,55 @@ exports.eliminarMiembroDeGrupo = async (req, res) => {
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 };
+
+exports.crearPublicacionGrupo = async (req, res) => {
+    try {
+        const imagenPublicacion = req.files
+
+        if (imagenPublicacion.length > 0 && imagenPublicacion != "") {
+            let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
+            req.body.imgPublicacion = imagenPublicacion.find((archivo) => {
+                return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
+            })
+
+            req.body.imagenPublicacion = `http://localhost:4000/assets/publicacion/${req.body.imgPublicacion.filename}`
+
+
+        } else {
+            req.body.imagenPublicacion = ""
+        }
+        let nuevaPublicacion = new publicacionesModel(req.body)
+        await nuevaPublicacion.save()
+        res.send(nuevaPublicacion)
+        console.log(nuevaPublicacion)
+
+    } catch (error) {
+        console.log('error', error);
+        res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
+    }
+}
+
+exports.consultarPublicacionesGrupo = async (req, res) => {
+    try {
+        const { tipoPublicacion } = req.query; // Cambiado de body a query
+        let dataPublicacion;
+
+        if (tipoPublicacion !== undefined) {
+            // Filtrar por tipo de publicación y pertenencia a grupos
+            dataPublicacion = await publicacionesModel.find({
+                tipoPublicacion: tipoPublicacion === 'true',
+                idGrupo: req.params.grupoId // Asegúrate de tener el campo idGrupo en tu modelo de publicaciones
+            });
+        } else {
+            // Obtener todas las publicaciones del grupo
+            dataPublicacion = await publicacionesModel.find({ idGrupo: req.params.grupoId });
+        }
+
+        res.json(dataPublicacion);
+    } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
+}
+}
 
 

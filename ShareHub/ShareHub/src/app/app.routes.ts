@@ -8,6 +8,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegistroGruposComponent } from "../app/components/registro-grupos/registro-grupos.component";
 import { Erro404Component } from './components/erro404/erro404.component';
 import { autenticacionGuardGuard } from './guards/autenticacion.guard.guard';
+import { ResutadoBusquedaComponent } from './components/resutado-busqueda/resutado-busqueda.component';
 
 
 const tituloPagina = "ShareHub"
@@ -17,8 +18,10 @@ let vistaUsuarioSession = ''
 
 export const routes: Routes = [
     { path: 'inicio', title: `Inicio | ${tituloPagina}`, component: InicioComponent },
-    {path:`grupos/:idGrupo`,title: `Grupo | ${tituloPagina}`,component:GruposComponent},
-    {path:'mis-grupos', title: `Mis grupos | ${tituloPagina}`, component:ListadoGruposComponent},
+    { path: 'resultados-busqueda/:palabraClave', title: `Buscar | ${tituloPagina}`, component: ResutadoBusquedaComponent},
+    { path: 'resultados-busqueda', title: `Buscar | ${tituloPagina}`, component: ResutadoBusquedaComponent},
+    { path: `grupos/:idGrupo`,title: `Grupo | ${tituloPagina}`,component:GruposComponent},
+    { path: 'mis-grupos', title: `Mis grupos | ${tituloPagina}`, component:ListadoGruposComponent},
     { path: 'mi-perfil/:idPerfil', canMatch: [autenticacionGuardGuard], title: `Perfil | ${tituloPagina}`, component: PerfilComponent },
     { path: 'perfil/:idPerfil', canMatch: [autenticacionGuardGuard], title: `Perfil | ${tituloPagina}`, component: PerfilComponent },
     { path: '', title: `Login | ${tituloPagina}`, component: LoginComponent },

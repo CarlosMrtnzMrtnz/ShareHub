@@ -10,7 +10,7 @@
             <ul class="nav justify-content-end TextoShareHubFont fw-semibold">
                 <li class="nav-item mt-2">
                     <input type="text" class="input-busqueda rounded-pill w-100 border-0 py-1 px-2"
-                        placeholder="Buscar">
+                        placeholder="Buscar" (keydown.enter)="buscarUsuarios($event)" (click)="redireccion()">
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-color hidden-nav-item" role="button"
@@ -60,3 +60,13 @@
         </div>
     </div>
 </nav>
+
+
+<!-- <ul class="list-group">
+    @if (usuariosEncontrados.length > 0) {
+        @for (usuario of usuariosEncontrados; track usuario._id) {}
+        <li  class="list-group-item">
+            {{ usuario.nombre }}
+        </li>
+    }
+</ul> -->

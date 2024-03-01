@@ -11,12 +11,12 @@ import { SharehubApiService } from '../../services/sharehub-api.service';
     styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-
     private Services = inject(SharehubApiService);
     idUsuarioPayload!: string;
-    URLProyecto = "//" + location.hostname + ":" + location.port
+    URLProyecto = '//' + location.hostname + ':' + location.port;
     imguser: string = '';
-    constructor(private router: Router) { }
+    usuariosEncontrados: any = [];
+    constructor(private router: Router) {}
 
     ngOnInit() {
         if (sessionStorage.getItem('token') == null) {
@@ -38,13 +38,13 @@ export class NavbarComponent {
             }
         );
 
-        this.Services
-            .postDesencriptarPayload(tokenSession)
-            .subscribe((respuestaApi: any) => {
+        this.Services.postDesencriptarPayload(tokenSession).subscribe(
+            (respuestaApi: any) => {
                 console.log(respuestaApi);
                 this.idUsuarioPayload = respuestaApi.id;
                 // this.router.navigate([`/mi-perfil/${this.idUsuarioPayload}`])
-            });
+            }
+        );
     }
 
     clearSessionStorage() {
@@ -52,4 +52,14 @@ export class NavbarComponent {
         location.reload();
     }
 
+    buscarUsuarios(event: any) {
+        const palabraClave = event.target.value;
+        this.router.navigate([
+            `/resultados-busqueda/${palabraClave}`]);
+    }
+
+    redireccion() {
+        this.router.navigate([
+            `/resultados-busqueda`]);
+    }
 }

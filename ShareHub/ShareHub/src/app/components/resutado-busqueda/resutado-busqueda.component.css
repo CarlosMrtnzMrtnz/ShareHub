@@ -1,0 +1,8 @@
+.img-usuario{
+    width: 60px;
+    height: 60px;
+}
+
+.bg-lista{
+    background-color: var(--morado-oscuro-principal);
+}

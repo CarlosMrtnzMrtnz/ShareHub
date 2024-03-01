@@ -52,6 +52,9 @@ export class AppComponent {
     sesionUsuario: boolean = false
 
     ngOnInit() {
+        this.publicacionesServices.getPublicaciones().subscribe((publicaciones) => {
+            this.publicaciones = publicaciones;
+          });
         if (sessionStorage.getItem("token") != null) {
             this.sesionUsuario = true
         } else {
@@ -105,8 +108,9 @@ export class AppComponent {
     private publicacionesServices = inject(SharehubApiService);
     inputFile!: any;
     archivo: any;
-
     idUsuarioPayload!: string;
+    tipoPublicacion!: boolean;
+    publicaciones :any =[] ;
 
     constructor(private fb: FormBuilder) {
         this.formPublicaciones = this.fb.group({
@@ -126,6 +130,7 @@ export class AppComponent {
 
     submitPublicacion() {
         console.log("---------",this.formPublicaciones)
+        this.tipoPublicacion = true;
         if (this.formPublicaciones.valid) {
             const formDataPublicaciones = new FormData();
             formDataPublicaciones.append(
@@ -137,9 +142,11 @@ export class AppComponent {
                 this.formPublicaciones.get('imgPublicacion')!.value
             );
             formDataPublicaciones.append('idUsuario', this.idUsuarioPayload);
+            formDataPublicaciones.append('tipoPublicacion', this.tipoPublicacion.toString());
+
 
             this.publicacionesServices
-                .postPublicacion(formDataPublicaciones)
+                .postPublicacion(formDataPublicaciones, true)
                 .subscribe((respuestaApi) => {
                     Swal.fire({
                         title: 'Publicacion creada correctamente!',
