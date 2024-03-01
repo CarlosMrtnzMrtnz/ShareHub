@@ -1,17 +1,19 @@
 <div class="caja my-3 p-3">
 
     <div class="d-flex justify-content-between">
-        <div class="d-flex m-2" [routerLink]="['/perfil', idUsuario]">
+        <div class="d-flex m-2" (click)="redireccionUsuario(idUsuario)">
             <div class="me-3"><img class="usuario" src="{{rutaImagenUsuario}}" alt=""></div>
             <div class="TextoShareHubFont d-grid align-items-center text-white ms-3">
                 <h4 class="m-0 TextoShareHubFont fw-bold">{{rutaNombre}}</h4>
             </div>
         </div>
         <div class="dropdown">
+            @if (verificarIDUsuario) {
             <button class="btn  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+            }
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" (click)="actualizarPublicacionX(rutaId)" data-bs-toggle="modal"
-                        [attr.data-bs-target]="'#exampleModalX'+rutaId" (click)="payloadInfo()" type="button">Editar</a>
+                        [attr.data-bs-target]="'#exampleModalX'+rutaId"  type="button">Editar</a>
                 </li>
                 <li><a class="dropdown-item" (click)="eliminarPublicacion(rutaId)" type="submit">Eliminar</a></li>
             </ul>
@@ -63,9 +65,11 @@
     </div>
     <div class="comentario mt-3" *ngIf="mostrarInput">
         <div class="dropdown d-flex justify-content-end">
+            @if (verificarIDUsuario) {
             <button class="btn  text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+            }
             <ul class="dropdown-menu">
-                <li><button type="button" class="dropdown-item" (click)="payloadInfo()"
+                <li><button type="button" class="dropdown-item"
                         (click)="actualizarPublicacionX(rutaId)">Editar</button></li>
                 <li><a class="dropdown-item" href="#">Eliminar</a></li>
             </ul>

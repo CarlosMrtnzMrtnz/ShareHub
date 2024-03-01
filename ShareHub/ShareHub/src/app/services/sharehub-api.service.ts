@@ -180,11 +180,12 @@ export class SharehubApiService {
             `${this.urlApi}/consultar-publicacion/${publicacionId}`
         );
     }
-    putPublicacion(publicacionId: string, dataPublicacion: any) {
-        return this.http.put(
-            `${this.urlApi}/actualizar-publicacion/${publicacionId}/publicacion`,
-            dataPublicacion
-        );
+    getPublicacionesUsuario(idUsuario: string) {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`)
+        return this.http.get(`${this.urlApi}/consultar-publicaciones-usuario/${idUsuario}`, {headers});
+    }
+    putPublicacion(publicacionId: string, dataPublicacion:any) {
+        return this.http.put(`${this.urlApi}/actualizar-publicacion/${publicacionId}/publicacion`, dataPublicacion)
     }
     // -------------------------------------Validacion token------------------------
     estaLogueado(): boolean {

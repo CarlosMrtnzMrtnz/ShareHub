@@ -8,16 +8,19 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UsersInterface } from '../../interface/users-interface';
 import Swal from 'sweetalert2';
+import { HijoInicioComponent } from '../hijo-inicio/hijo-inicio.component';
 
 @Component({
     selector: 'app-perfil',
     standalone: true,
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterLink,
+        HijoInicioComponent
     ],
     templateUrl: './perfil.component.html',
     styleUrl: './perfil.component.css',
@@ -26,17 +29,21 @@ export class PerfilComponent {
     formPerfil: FormGroup;
     private PerfilServices = inject(SharehubApiService);
     listadoDeUsuarios = signal<any>([]);
+    publicacionesDataUsuario:any = []
     idPerfilUrl: any;
-
+    usuario!: string
     nombre: string = '';
     CorreoUser: string = '';
     clave: string = '';
     imguser: string = '';
     descripcionuser: string = '';
     _id: string = "";
-    idPersonaSesion: string = ""
-    verificarIDUsuario: boolean = false
-    idURL: any
+    idPersonaSesion: string = "";
+    idUsuarioPayload!: string;
+    verificarIDUsuario: boolean = false;
+    mostrarInput: boolean = false;
+    idURL: any;
+    publicaciones: any;
 
     inputHiddenID = new FormControl();
 
@@ -70,6 +77,7 @@ export class PerfilComponent {
                     this.imguser = perfilData.imguser;
                     this.descripcionuser = perfilData.descripcionuser;
                     this._id = perfilData._id;
+                    this.cargarPublicacionesUsuario();
                     this.tokenUsuario()
 
                 },
@@ -80,6 +88,158 @@ export class PerfilComponent {
         });
     }
 
+    async cargarPublicacionesUsuario() {
+        console.log("---------------------");
+        let tokenSession = sessionStorage.getItem('token');
+        let respuestaApi = await this.PerfilServices.postDesencriptarPayload(tokenSession).toPromise();
+        let idUsuario = respuestaApi.id;
+        this.PerfilServices.getPublicacionesUsuario(this.idPerfilUrl).subscribe({
+            next: (publicaciones: any) => {
+                this.publicaciones = publicaciones;
+                console.log("---------------------------");
+                console.log(publicaciones);
+                console.log("---------------------------");
+                console.log("---------------------------");
+
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
+    }
+
+    actualizarPublicacionX(idPublicacion: string) {
+        this.PerfilServices.getUnaPublicacion(idPublicacion).subscribe({
+            next: (publicacion) => {
+                let dataPublicacion: any = publicacion;
+                this.usuario = dataPublicacion._id;
+                console.log(`objeto de publicacion ${dataPublicacion._id}`);
+                console.log(`idUsuario creo publicacion ${dataPublicacion.idUsuario}`);
+
+                if (dataPublicacion.imagenPublicacion == null) {
+                    dataPublicacion.imagenPublicacion = ''
+                }
+                if (dataPublicacion.comentario == null || dataPublicacion.comentario == undefined) {
+                    dataPublicacion.comentario = ''
+                }
+
+                this.formPerfil.setValue({
+                    textPublicacion: '',
+                    imgPublicacion: '',
+                    comentario: ''
+                })
+
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        })
+    }
+
+    consultarPublicaciones() {
+        this.PerfilServices.getPublicaciones().subscribe({
+            next: (publicaciones2) => {
+                this.publicaciones.set(publicaciones2)
+                console.log(this.publicaciones());
+
+            }, error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+
+    async eliminarPublicacion(idPublicacion: string) {
+        let tokenSession = sessionStorage.getItem('token');
+        let respuestaApi: any;
+        let respuesta: any;
+
+        try {
+            respuestaApi = await this.PerfilServices.postDesencriptarPayload(tokenSession).toPromise();
+            this.idUsuarioPayload = respuestaApi.id;
+            // console.log(`${this.idUsuarioPayload} respuestaApi.id | idUsuarioPayload logueado`);
+
+            respuesta = await this.PerfilServices.getUnaPublicacion(idPublicacion).toPromise();
+            this.usuario = respuesta.idUsuario;
+            // console.log(`${this.usuario} id de usuario que creo la publicacion`);
+
+            if (this.idUsuarioPayload == this.usuario) {
+                let mensaje = "Tenga en cuenta que al eliminar esta publicacion no se podrá restablecer";
+                // console.log(idPublicacion);
+
+                const result = await Swal.fire({
+                    title: "¿Estás seguro que quieres eliminar esta publicacion?",
+                    icon: "question",
+                    text: mensaje,
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Si, eliminar!",
+                    cancelButtonText: "No, cancelar!",
+                });
+
+                if (result.isConfirmed) {
+                    await this.PerfilServices.deletePublicacion(idPublicacion).toPromise();
+                    Swal.fire({
+                        title: "Publicacion eliminada correctamente!",
+                        icon: "success"
+                    });
+                    this.consultarPublicaciones();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }
+            } else {
+                Swal.fire({
+                    title: "Solo puede eliminar quien la creo!",
+                    icon: "error"
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    toggleInput() {
+        this.mostrarInput = !this.mostrarInput;
+    }
+
+    submitPublicacionEditada(idPublicacion: string) {
+        console.log(idPublicacion);
+
+        console.log("-----++----", this.formPerfil)
+        if (this.formPerfil.valid) {
+            const formDataPublicaciones = new FormData();
+            formDataPublicaciones.append('textPublicacion', this.formPerfil.get('textPublicacion')!.value);
+            formDataPublicaciones.append('imgPublicacion', this.formPerfil.get('imgPublicacion')!.value);
+            formDataPublicaciones.append('comentario', this.formPerfil.get('textPublicacion')!.value);
+
+            const imgPublicacionFile = this.formPerfil.get('imgPublicacion')!.value
+            console.log("🚀 ~ HijoInicioComponent ~ imgPublicacionFile:", imgPublicacionFile)
+            if (imgPublicacionFile != "") {
+                formDataPublicaciones.append('imgPublicacion', imgPublicacionFile)
+            }
+            console.log('Entro en actualizar');
+
+            this.PerfilServices
+                .putPublicacion(idPublicacion, formDataPublicaciones)
+                .subscribe((respuestaApi) => {
+                    Swal.fire({
+                        title: 'Publicacion editada correctamente!',
+                        icon: 'success',
+                    });
+                    console.log(respuestaApi);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Ingresa los datos requeridos para editar la publicacion',
+                icon: 'error',
+            });
+        }
+    }
 
     submitFormEditar() {
         if (this.formPerfil.valid) {
@@ -141,6 +301,7 @@ export class PerfilComponent {
                     imguser: '',
                     descripcionuser: dataUsuario.descripcionuser,
                     idHidden: dataUsuario._id,
+
                 });
             },
             error: (err) => {
