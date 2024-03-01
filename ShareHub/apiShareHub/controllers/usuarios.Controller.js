@@ -150,3 +150,19 @@ exports.desencriptarToken = (req, res) => {
         return null;
     }
 }
+
+exports.buscarUsuarioNavbar = async (req, res) => {
+    try {
+        const { palabraClave } = req.params;
+        console.log('Palabra clave de búsqueda:', palabraClave);
+
+        const usuariosEncontrados = await usuariosModel.find({ nombre: { $regex: palabraClave, $options: 'i' } });
+        console.log('Usuarios encontrados:', usuariosEncontrados);
+
+        res.json(usuariosEncontrados);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error interno del servidor', error: error.message || 'No se proporciona un mensaje de error detallado'  });
+    }
+}
+

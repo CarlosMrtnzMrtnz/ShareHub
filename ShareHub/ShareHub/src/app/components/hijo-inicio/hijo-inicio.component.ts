@@ -39,6 +39,7 @@ export class HijoInicioComponent {
     _id: string = '';
     comentario: string =''
     idUsuarioPayload!: string;
+    tipoPublicacion!: boolean;
     publicaciones = signal<any>([])
 
 
@@ -68,15 +69,17 @@ export class HijoInicioComponent {
     }
 
     consultarPublicaciones() {
-        this.publicacionesServices.getPublicaciones().subscribe({
-            next: (publicaciones2) => {
-                this.publicaciones.set(publicaciones2)
-                console.log(this.publicaciones());
+        // if(this.tipoPublicacion === true){
+            this.publicacionesServices.getPublicaciones().subscribe({
+                next: (publicaciones2) => {
+                    this.publicaciones.set(publicaciones2)
+                    console.log(this.publicaciones());
 
-            }, error: (err) => {
-                console.log(err);
-            }
-        })
+                }, error: (err) => {
+                    console.log(err);
+                }
+            })
+        // }
     }
 
     payloadInfo() {

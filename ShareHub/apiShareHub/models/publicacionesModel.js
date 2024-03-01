@@ -16,6 +16,10 @@ const publicacionesSchema = mongoose.Schema({
     comentario:{
         type: String,
         require: false
+    },
+    tipoPublicacion:{
+        type: Boolean,
+        require: true
     }
 }, {
     timestamps: true,

@@ -36,7 +36,7 @@ export class RegistroGruposComponent {
 
     ngOnInit(){
         if (sessionStorage.getItem('token') == null) {
-            this.router.navigate(['/']);
+            this.router.navigate(['']);
         }
     }
 
