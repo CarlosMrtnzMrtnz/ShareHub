@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"  # Expose Node.js port
+    depends_on:
+      - mongodb  # Wait for MongoDB to be ready before starting Node.js
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/mydatabase  # MongoDB connection URI
+    networks:
+      - mynetwork
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    volumes:
+      - mongodb_data:/data/db  # Persist MongoDB data
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  mongodb_data:
