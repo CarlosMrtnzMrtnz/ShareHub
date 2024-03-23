@@ -47,4 +47,5 @@ router.get('/consultar-publicaciones-usuario/:idUsuario', publicacionController.
 router.post('/crear-publicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.crearPulicacion);
 router.put('/actualizar-publicacion/:idPublicacion/:directorio', mdlMulter.array("imgPublicacion"), publicacionController.actualizarPublicacion)
 router.delete('/eliminar-publicacion/:idPublicacion', publicacionController.eliminarPublicacion)
+
 module.exports = router
