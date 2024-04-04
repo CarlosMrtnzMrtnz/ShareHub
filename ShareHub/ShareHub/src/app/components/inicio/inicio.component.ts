@@ -64,7 +64,7 @@ export class InicioComponent {
         this.publicacionesServices.getPublicaciones().subscribe({
             next: (publicaciones2) => {
                 this.publicaciones.set(publicaciones2)
-                console.log(this.publicaciones());
+                // console.log(this.publicaciones());
 
             }, error: (err) => {
                 console.log(err);

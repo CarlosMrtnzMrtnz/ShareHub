@@ -6,7 +6,7 @@ exports.consultarPublicaciones = async (req, res) => {
         const { tipoPublicacion } = req.body
         dataPublicacion.tipoPublicacion = tipoPublicacion
             res.json(dataPublicacion)
-            console.log(dataPublicacion)
+            // console.log(dataPublicacion)
     } catch (error) {
         console.log(error);
         res.status(500).send({ error: 'Ha ocurrido un error, comunicate con el administrador' })
@@ -19,7 +19,7 @@ exports.consultarPublicacionesGrupos = async (req, res) => {
         dataPublicacion.tipoPublicacion = tipoPublicacion
         // if (req.body.tipoPublicacion === true) {
             res.json(dataPublicacion)
-            console.log(dataPublicacion)
+            // console.log(dataPublicacion)
         // }
     } catch (error) {
         console.log(error);
@@ -59,7 +59,7 @@ exports.crearPulicacion = async (req, res) => {
         let nuevaPublicacion = new publicacionesModel(req.body)
         await nuevaPublicacion.save()
         res.send(nuevaPublicacion)
-        console.log(nuevaPublicacion)
+        // console.log(nuevaPublicacion)
 
     } catch (error) {
         console.log('error', error);
@@ -124,7 +124,7 @@ exports.actualizarPublicacion = async (req, res) => {
 
             if (req.files.length != 0) {
                 const imagenPublicacion = req.files
-                console.log(req.files);
+                // console.log(req.files);
                 let extensionesPermitidas = ["jpg", "png", "gif", "jpeg", "webp", "jfif"]
                 req.body.imgPublicacion = imagenPublicacion.find((archivo) => {
                     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())

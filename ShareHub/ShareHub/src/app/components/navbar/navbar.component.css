@@ -10,6 +10,11 @@
     background-color: var(--morado-claro);
 }
 
+.input-busqueda::placeholder{
+    color: var(--morado-oscuro-secundario);
+    font-weight: bolder;
+}
+
 .img-perfil-navbar {
     width: 30px;
     height: 30px;

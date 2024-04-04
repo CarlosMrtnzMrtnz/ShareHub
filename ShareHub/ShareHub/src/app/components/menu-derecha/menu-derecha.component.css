@@ -20,7 +20,7 @@ body {
     height: 40px;
     width: 40px;
     background-color: var(--amarillo-principal);
-
+    color: var(--morado-oscuro-principal);
 }
 .cuadro {
     background-color:var(--morado-oscuro-secundario);

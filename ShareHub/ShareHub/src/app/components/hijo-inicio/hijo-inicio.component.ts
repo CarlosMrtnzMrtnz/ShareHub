@@ -82,7 +82,7 @@ export class HijoInicioComponent {
             this.publicacionesServices.getPublicaciones().subscribe({
                 next: (publicaciones2) => {
                     this.publicaciones.set(publicaciones2)
-                    console.log(this.publicaciones());
+                    // console.log(this.publicaciones());
 
                 }, error: (err) => {
                     console.log(err);
@@ -145,9 +145,9 @@ export class HijoInicioComponent {
 
     // ------------------------------Submit Publicacion------------------------------
     submitPublicacionEditada(idPublicacion: string) {
-        console.log(idPublicacion);
+        // console.log(idPublicacion);
 
-        console.log("-----++----", this.formPublicaciones)
+        // console.log("-----++----", this.formPublicaciones)
         if (this.formPublicaciones.valid) {
             const formDataPublicaciones = new FormData();
             formDataPublicaciones.append('textPublicacion', this.formPublicaciones.get('textPublicacion')!.value);
@@ -155,11 +155,11 @@ export class HijoInicioComponent {
             formDataPublicaciones.append('comentario', this.formPublicaciones.get('textPublicacion')!.value);
 
             const imgPublicacionFile = this.formPublicaciones.get('imgPublicacion')!.value
-            console.log("🚀 ~ HijoInicioComponent ~ imgPublicacionFile:", imgPublicacionFile)
+            // console.log("🚀 ~ HijoInicioComponent ~ imgPublicacionFile:", imgPublicacionFile)
             if (imgPublicacionFile != "") {
                 formDataPublicaciones.append('imgPublicacion', imgPublicacionFile)
             }
-            console.log('Entro en actualizar');
+            // console.log('Entro en actualizar');
 
             this.publicacionesServices
                 .putPublicacion(idPublicacion, formDataPublicaciones)
@@ -188,8 +188,8 @@ export class HijoInicioComponent {
             next: (publicacion) => {
                 let dataPublicacion: any = publicacion;
                 this.usuario = dataPublicacion._id;
-                console.log(`objeto de publicacion ${dataPublicacion._id}`);
-                console.log(`idUsuario creo publicacion ${dataPublicacion.idUsuario}`);
+                // console.log(`objeto de publicacion ${dataPublicacion._id}`);
+                // console.log(`idUsuario creo publicacion ${dataPublicacion.idUsuario}`);
 
                 if (dataPublicacion.imagenPublicacion == null) {
                     dataPublicacion.imagenPublicacion = ''
