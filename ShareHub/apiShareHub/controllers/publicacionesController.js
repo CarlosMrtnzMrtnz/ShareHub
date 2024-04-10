@@ -1,4 +1,5 @@
 const publicacionesModel = require('../models/publicacionesModel')
+require('dotenv').config({ path: 'config.env' });
 
 exports.consultarPublicaciones = async (req, res) => {
     try {
@@ -49,7 +50,7 @@ exports.crearPulicacion = async (req, res) => {
                 return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
             })
 
-            req.body.imagenPublicacion = `http://localhost:4000/assets/publicacion/${req.body.imgPublicacion.filename}`
+            req.body.imagenPublicacion = `${process.env.server}/assets/publicacion/${req.body.imgPublicacion.filename}`
 
 
         }else{
@@ -87,30 +88,6 @@ exports.eliminarPublicacion = async (req, res) => {
 
 exports.actualizarPublicacion = async (req, res) => {
     try {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if (req.params.idPublicacion.length == 24) {
             let dataPublicacion = await publicacionesModel.findById(req.params.idPublicacion)
             if (!dataPublicacion) {
@@ -129,7 +106,7 @@ exports.actualizarPublicacion = async (req, res) => {
                 req.body.imgPublicacion = imagenPublicacion.find((archivo) => {
                     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
                 })
-                dataPublicacion.imagenPublicacion = `http://localhost:4000/assets/publicacion/${req.body.imgPublicacion.filename}`
+                dataPublicacion.imagenPublicacion = `${process.env.server}/assets/publicacion/${req.body.imgPublicacion.filename}`
             } else {
                 dataPublicacion.imagenPublicacion = dataPublicacion.imagenPublicacion
             }

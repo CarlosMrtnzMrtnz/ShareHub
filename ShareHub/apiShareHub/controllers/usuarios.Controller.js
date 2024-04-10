@@ -101,7 +101,7 @@ exports.actualizarUsuario = async (req, res) => {
                 req.body.imguser = imagenUser.find((archivo) => {
                     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
                 })
-                dataUsuario.imguser = `http://localhost:4000/assets/perfil/${req.body.imguser.filename}`
+                dataUsuario.imguser = `${process.env.server}/assets/perfil/${req.body.imguser.filename}`
 
             } else {
                 dataUsuario.imguser = dataUsuario.imguser

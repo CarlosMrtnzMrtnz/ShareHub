@@ -1,5 +1,6 @@
 const gruposModel = require('../models/gruposModel')
 const publicacionesModel = require('../models/publicacionesModel')
+require('dotenv').config({ path: 'config.env' });
 
 exports.consultarGrupos = async (req, res) => {
     try {
@@ -25,7 +26,7 @@ exports.crearGrupo = async (req, res) => {
             req.body.imgGrupo = imagenGrupo.find((archivo) => {
                 return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
             })
-            req.body.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
+            req.body.imgGrupo = `${process.env.server}/assets/grupos/${req.body.imgGrupo.filename}`
         }
         let nuevoGrupo = new gruposModel(req.body)
         await nuevoGrupo.save()
@@ -81,7 +82,7 @@ exports.actualizarGrupo = async (req, res) => {
                 req.body.imgGrupo = imagenGrupo.find((archivo) => {
                     return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
                 })
-                dataGrupo.imgGrupo = `http://localhost:4000/assets/grupos/${req.body.imgGrupo.filename}`
+                dataGrupo.imgGrupo = `${process.env.server}/assets/grupos/${req.body.imgGrupo.filename}`
 
                 console.log("******************************************************************");
                 console.log(dataGrupo);
@@ -152,7 +153,7 @@ exports.crearPublicacionGrupo = async (req, res) => {
                 return extensionesPermitidas.includes(archivo.mimetype.split('/').pop())
             })
 
-            req.body.imagenPublicacion = `http://localhost:4000/assets/publicacion/${req.body.imgPublicacion.filename}`
+            req.body.imagenPublicacion = `${process.env.server}/assets/publicacion/${req.body.imgPublicacion.filename}`
 
 
         } else {
