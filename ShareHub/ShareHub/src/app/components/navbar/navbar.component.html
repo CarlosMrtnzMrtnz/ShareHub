@@ -41,7 +41,7 @@
                         <li>
                             <button class="dropdown-item text-color" (click)="clearSessionStorage()">Log Out</button>
                         </li>
-                        <li><a class="dropdown-item text-color" routerLink="/perfil">Perfil</a></li>
+                        <li><a class="dropdown-item text-color" [href]="URLProyecto+'/mi-perfil/'+idUsuarioPayload">Perfil</a></li>
                         <li><a class="dropdown-item text-color" href="#">Notificaciones</a></li>
                         <li><a class="dropdown-item text-color" href="#">Explorar</a></li>
                         <li class="dropdown">

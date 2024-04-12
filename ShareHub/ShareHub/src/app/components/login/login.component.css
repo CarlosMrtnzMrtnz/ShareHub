@@ -21,6 +21,13 @@ body {
     -30px -30px 56px #150037;
 
 }
+
+@media (max-width: 414px) {
+    .cuadro{
+        width: 116% !important;
+    }
+}
+
 .linea2 {
     border-bottom: 2px solid #c97bf6;
 }
@@ -37,5 +44,9 @@ body {
 .alerta2 {
     position: absolute;
     top: 401px;
+}
+
+.link-registro{
+    color: var(--morado-claro);
 }
 

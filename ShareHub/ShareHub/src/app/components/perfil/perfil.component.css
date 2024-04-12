@@ -3,6 +3,13 @@
     height: 200px;
 }
 
+@media (max-width: 414px) {
+    .img-perfil {
+        width: 220px !important;
+        height: 220px !important;
+    }
+}
+
 @media (max-width: 768px) {
     .img-perfil {
         width: 100px;

@@ -25,3 +25,7 @@ body {
 .TextoShareHubFont{
     font-family: 'TextoShareHubFont';
 }
+
+.morado-oscuro-principal{
+    color: var(--morado-oscuro-principal) !important;
+}
