@@ -26,11 +26,11 @@
                             formControlName="CorreoUser" />
                         @if (formregistro.get('CorreoUser')?.hasError('required')&&
                         formregistro.get('CorreoUser')?.touched) {
-                        <div> debes escribir algo en el Correo</div>
+                        <div class="text-danger"> debes escribir un Correo</div>
                         }
                         @if (formregistro.get('CorreoUser')?.hasError('pattern')&&
                         formregistro.get('CorreoUser')?.touched) {
-                        <div>No cumple los requisitos para ser un correo valido</div>
+                        <div class="text-danger">No cumple los requisitos para ser un correo valido</div>
                         }
 
                     </div>
@@ -41,9 +41,9 @@
                         <input id="inputPassword2" type="text" class="form-control rounded-5 mt-3"
                             formControlName="nombre" />
                         @if (formregistro.get('nombre')?.hasError('required')&& formregistro.get('nombre')?.touched) {
-                        <div>Debes tener un nombre de usuario</div>}
+                        <div class="text-danger">Debes tener un nombre de usuario</div>}
                         @if (formregistro.get('nombre')?.hasError('pattern') && formregistro.get ('nombre')?.touched) {
-                        <div> Eso no es un nombre pendejo</div>}
+                        <div class="text-danger"> Escribe un nombre correcto!</div>}
                     </div>
                     <div class="p-3 ">
                         <label for="inputPassword1" class="TextoShareHubFont visually rounded-5">Contraseña</label>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="p-3 d-flex flex-column justify-content-center ">
-                        <button type="submit" class=" text-black my-3  boton btn  rounded-5">registrame
+                        <button type="submit" class=" text-black my-3  boton btn  rounded-5">registrarme
                         </button>
                     </div>
                 </form>
